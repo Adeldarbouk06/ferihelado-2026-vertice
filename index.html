@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferihelado 2026 Vértice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: portada oscura con seis paletas (una por marca) como firma; debajo, bloques tranquilos sobre papel hueso. Cada marca tiñe su propia página con su color. */
+:root{
+  --paper:#F5F2EB; --card:#FFFFFF; --ink:#1E2133; --muted:#666A7D; --line:#E3DFD4;
+  --slate:#22263B; --on-slate:#F6F3EC; --accent:#D2392E; --accent-soft:#FBE4E0;
+  --warn:#8A5A00; --warn-soft:#F8ECCB; --stick:#E2C08F;
+  --display:"Unbounded","Arial Black",Arial,sans-serif; --body:"Hanken Grotesk","Segoe UI",Helvetica,Arial,sans-serif;
+  --shadow:0 1px 2px rgba(30,33,51,.06),0 8px 24px -12px rgba(30,33,51,.18);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141621; --card:#1E2132; --ink:#EFECE4; --muted:#A4A7B8; --line:#32364C;
+  --slate:#0E101A; --on-slate:#F6F3EC; --accent:#FF7A6E; --accent-soft:#47211E;
+  --warn:#EDC265; --warn-soft:#3F3418; --shadow:none; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#141621; --card:#1E2132; --ink:#EFECE4; --muted:#A4A7B8; --line:#32364C;
+  --slate:#0E101A; --on-slate:#F6F3EC; --accent:#FF7A6E; --accent-soft:#47211E;
+  --warn:#EDC265; --warn-soft:#3F3418; --shadow:none; color-scheme:dark;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body)}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h2{font-size:1.55rem;font-weight:700;letter-spacing:-.01em}
+h3{font-size:.92rem;font-weight:600}
+h4{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+h4::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--brand,var(--accent))}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.15em}
+li+li{margin-top:.3em}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+img{max-width:100%;height:auto;display:block}
+
+header{background:var(--slate);color:var(--on-slate);position:sticky;top:0;z-index:5}
+.bar{max-width:1140px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px 20px;flex-wrap:wrap}
+.bar h1 b{color:#FF8076}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+nav::-webkit-scrollbar{display:none}
+nav button{background:none;border:0;border-radius:999px;color:var(--on-slate);opacity:.75;padding:7px 15px;font-weight:600;font-size:.92rem;white-space:nowrap;transition:background .15s}
+nav button:hover{opacity:1;background:rgba(255,255,255,.1)}
+nav button[aria-selected="true"]{opacity:1;background:var(--on-slate);color:#22263B}
+
+main{max-width:1140px;margin:0 auto;padding:22px 16px 70px}
+section.tab{display:flex;flex-direction:column;gap:18px}
+.lead{color:var(--muted);max-width:66ch;font-size:1.04rem}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:var(--shadow)}
+.stack{display:flex;flex-direction:column;gap:10px;min-width:0}
+.row{display:flex;gap:10px 14px;flex-wrap:wrap;align-items:center}
+.small{font-size:.87rem;color:var(--muted)}
+.big{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.15}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.74rem;font-weight:700;white-space:nowrap;letter-spacing:.02em}
+.chip.ws{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.cata{background:var(--accent);color:#fff;border-color:var(--accent)}
+:root[data-theme="dark"] .chip.cata{color:#1b1010}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.cata{color:#1b1010}}
+.chip.ext{color:var(--muted);border-style:dashed}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.warnbox{background:var(--warn-soft);border-color:transparent;box-shadow:none}
+.warnbox h3{color:var(--warn)}
+.quote{border-left:3px solid var(--brand,var(--accent));padding:2px 0 2px 12px;font-style:italic}
+
+/* Portada */
+.hero{background:var(--slate);color:var(--on-slate);border-radius:24px;padding:34px clamp(20px,4vw,44px) 30px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:end;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -60px -120px auto;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(210,57,46,.35),transparent 68%);pointer-events:none}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.7}
+.mega{font-size:clamp(2.1rem,7vw,4.3rem);font-weight:800;letter-spacing:-.035em;line-height:.95;margin:10px 0 14px;overflow-wrap:anywhere}
+.mega em{font-style:normal;color:#FF8076}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-meta span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:4px 13px;font-size:.86rem}
+.hero-meta span.hot{background:#FF8076;border-color:#FF8076;color:#22263B;font-weight:700}
+.pops{display:flex;gap:12px;align-items:flex-end;position:relative}
+.pop{background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:0;transition:transform .2s;animation:rise .6s cubic-bezier(.2,.8,.2,1) backwards}
+.pop:nth-child(2){animation-delay:.05s}.pop:nth-child(3){animation-delay:.1s}.pop:nth-child(4){animation-delay:.15s}.pop:nth-child(5){animation-delay:.2s}.pop:nth-child(6){animation-delay:.25s}
+.pop:hover{transform:translateY(-6px)}
+.pop i{display:block;width:50px;border-radius:25px 25px 9px 9px;border:2px solid rgba(255,255,255,.28);position:relative}
+.pop i::after{content:"";position:absolute;left:9px;top:9px;width:7px;height:42%;border-radius:4px;background:rgba(255,255,255,.28)}
+.pop u{display:block;width:10px;height:24px;background:var(--stick);border-radius:0 0 5px 5px}
+.pop span{font-size:.66rem;font-weight:700;margin-top:7px;max-width:62px;text-align:center;line-height:1.15;color:var(--on-slate);opacity:.85}
+@keyframes rise{from{transform:translateY(26px)}}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.pops{justify-content:space-between;gap:6px}.pop i{width:40px}}
+
+.next{border:0;background:var(--accent);color:#fff;box-shadow:none}
+.next .small{color:rgba(255,255,255,.85)}
+.next .chip{background:#fff;color:var(--accent);border-color:#fff}
+:root[data-theme="dark"] .next{color:#1b1010}:root[data-theme="dark"] .next .small{color:rgba(27,16,16,.8)}:root[data-theme="dark"] .next .chip{background:#1b1010;border-color:#1b1010}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .next{color:#1b1010}:root:not([data-theme="light"]) .next .small{color:rgba(27,16,16,.8)}:root:not([data-theme="light"]) .next .chip{background:#1b1010;border-color:#1b1010}}
+
+.tile{border:0;border-radius:18px;padding:18px 18px 20px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px;justify-content:flex-end;transition:transform .2s;position:relative;overflow:hidden}
+.tile:hover{transform:translateY(-3px)}
+.tile h3{font-size:1rem}
+.tile span{font-size:.85rem;opacity:.85}
+.tile::after{content:"→";position:absolute;top:14px;right:16px;font-weight:700;opacity:.7}
+
+/* Agenda */
+.days{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:start}
+.day{display:flex;flex-direction:column;gap:10px;min-width:0}
+.dayh{display:flex;align-items:center;gap:12px;padding:4px 2px 8px;border-bottom:3px solid var(--ink)}
+.dnum{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;letter-spacing:-.04em}
+.dayh b{display:block;font-family:var(--display);font-size:.9rem}
+.ev{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ink);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow)}
+.ev.cata{border-left-color:var(--accent)}
+.ev.ext{background:none;border-style:dashed;border-left-style:dashed;border-left-color:var(--line);box-shadow:none;color:var(--muted)}
+.ev.now{outline:2px solid var(--accent)}
+.evt{font-family:var(--display);font-weight:700;font-size:.95rem;font-variant-numeric:tabular-nums;display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.ev p{font-weight:600;line-height:1.35}
+.ev.ext p{font-weight:500}
+.combo{counter-reset:c;list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.combo li{counter-increment:c;display:flex;gap:12px;align-items:baseline;margin:0;padding:8px 0;border-bottom:1px dashed var(--line)}
+.combo li:last-child{border:0}
+.combo li::before{content:counter(c);font-family:var(--display);font-weight:800;color:var(--accent);min-width:1.2em}
+
+/* Marcas */
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:600;font-size:.9rem}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.seg button i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:0;border:1px solid rgba(128,128,128,.4)}
+.banner{border-radius:22px;padding:30px clamp(20px,4vw,40px);display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden}
+.banner h2{font-size:clamp(1.5rem,5vw,2.7rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+.banner p{margin-top:10px;opacity:.88;max-width:48ch}
+.banner .pop{animation:none;pointer-events:none;flex:none}
+.banner .pop i{width:62px;height:104px!important;border-color:currentColor;opacity:.9}
+.gal{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.gal figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#EEECE6}
+.gal figcaption{background:var(--card);padding:8px 12px;font-size:.84rem;color:var(--muted)}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-weight:700}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
+tr.tot td{font-weight:700;background:color-mix(in srgb,var(--line) 40%,transparent)}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+summary{cursor:pointer;padding:14px 18px;font-family:var(--display);font-weight:600;font-size:.88rem}
+details>div{padding:2px 18px 18px;display:flex;flex-direction:column;gap:12px}
+details .card,details .tw{box-shadow:none}
+input[type=search]{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;width:100%;max-width:360px}
+.flav{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.flav div{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;display:flex;gap:10px;align-items:baseline;font-weight:500}
+.flav b{font-family:var(--display);font-variant-numeric:tabular-nums;color:var(--accent);font-size:.7rem}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0;box-shadow:var(--shadow)}
+.steps li::before{content:counter(s);display:block;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--brand,var(--accent));line-height:1;margin-bottom:8px}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-r{display:grid;grid-template-columns:130px 1fr 30px;gap:10px;align-items:center;font-size:.9rem}
+.bar-t{display:flex;height:18px;border-radius:9px;overflow:hidden}
+.bar-t i{display:block;background:var(--ink)}
+.bar-t i+i{background:var(--accent)}
+@media (max-width:480px){.bar-r{grid-template-columns:100px 1fr 26px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Grupo Vértice: identidad sobria, editorial y corporativa */
+:root{--slate:#152638;--accent:#A9B86A;--accent-soft:#EEF1E4;--on-slate:#F7F7F2;--warn:#8A5A00;--warn-soft:#F8ECCB}
+:root[data-theme="dark"]{--slate:#101C29;--accent:#C2D18A;--accent-soft:#303A2C}
+.brandmark{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit;min-width:180px}
+.brandmark-symbol{width:34px;height:34px;border:1px solid rgba(255,255,255,.45);border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-size:14px;font-weight:800;letter-spacing:-.08em}
+.brandmark-copy{display:flex;flex-direction:column;line-height:1.05}
+.brandmark-copy strong{font-family:var(--display);font-size:.76rem;letter-spacing:.13em}
+.brandmark-copy span{font-size:.58rem;letter-spacing:.18em;opacity:.7;margin-top:4px}
+header .bar h1{display:none}
+header .bar{padding-top:12px;padding-bottom:12px}
+nav button[aria-selected="true"]{background:#F7F7F2;color:#152638}
+.hero{background:#152638}
+.hero::before{background:radial-gradient(circle,rgba(169,184,106,.28),transparent 68%)}
+.mega em{color:#C5D28F}
+.hero-meta span.hot{background:#C5D28F;border-color:#C5D28F;color:#152638}
+.tile:focus-visible{outline-color:var(--accent)}
+/* Control del evento */
+.control-hero{background:#152638;color:#F7F7F2;border-radius:20px;padding:24px;display:grid;gap:16px}
+.control-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi b{font:700 1.55rem var(--display);display:block;line-height:1.2}
+.kpi span{font-size:.78rem;color:var(--muted)}
+.control-tabs{display:flex;gap:6px;overflow:auto;padding:3px 0 8px}
+.control-tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.86rem}
+.control-tabs button[aria-pressed="true"]{background:var(--slate);color:#fff;border-color:var(--slate)}
+.control-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.control-tools input,.control-tools select,.control-select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.control-tools input{flex:1;min-width:190px}
+.status-select{font:inherit;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);padding:6px 8px;min-width:118px}
+.state{display:inline-flex;align-items:center;border-radius:999px;padding:3px 9px;font-size:.73rem;font-weight:700;background:var(--accent-soft);color:var(--ink)}
+.state.pending{background:#F8ECCB;color:#795100}.state.progress{background:#DDEAF5;color:#1D557A}.state.done{background:#E5F1E5;color:#2E6537}.state.delayed{background:#FBE4E0;color:#9A3028}
+.task-list{display:flex;flex-direction:column;gap:9px}
+.task-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px}
+.task-row h4{margin:0 0 5px;color:var(--ink);font:700 .9rem var(--body);letter-spacing:0;text-transform:none}
+.task-row h4:before{display:none}
+.task-meta{display:flex;gap:6px;flex-wrap:wrap;font-size:.76rem;color:var(--muted)}
+.task-side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.timeline{display:flex;flex-direction:column;gap:8px}
+.timeline-row{display:grid;grid-template-columns:115px minmax(0,1fr);gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.timeline-time{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--accent)}
+.timeline-row p{font-weight:600;line-height:1.35}
+.timeline-row .small{font-weight:400;margin-top:4px}
+.contact-row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.contact-row:last-child{border:0}
+.progress-track{height:9px;border-radius:20px;background:var(--line);overflow:hidden}
+.progress-track i{height:100%;display:block;background:var(--accent);border-radius:20px}
+.notice{padding:13px 15px;border-radius:12px;background:#F8ECCB;color:#684B0C;font-size:.86rem}
+.btn-quiet{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;font-weight:700}
+@media(max-width:600px){.task-row{grid-template-columns:1fr}.task-side{align-items:flex-start}.timeline-row{grid-template-columns:85px minmax(0,1fr)}.brandmark{min-width:auto}}
+
+
+/* Pantalla de aviso previa al dashboard */
+.access-screen{position:fixed;inset:0;z-index:1000;background:rgba(14,28,41,.94);display:grid;place-items:center;padding:22px}
+.access-card{width:min(560px,100%);background:#F7F7F2;color:#152638;border-radius:22px;padding:clamp(24px,5vw,42px);box-shadow:0 24px 80px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:18px;text-align:left}
+.access-mark{font:800 .8rem var(--display);letter-spacing:.18em;color:#53633A}
+.access-card h2{font-size:clamp(1.25rem,4vw,1.8rem);line-height:1.2}
+.access-card p{font-size:1rem;line-height:1.55}
+.access-card button{align-self:flex-start;border:0;border-radius:999px;background:#152638;color:#fff;padding:12px 22px;font-weight:700}
+body.access-locked{overflow:hidden}body.access-locked>header,body.access-locked>main{visibility:hidden}
+
+</style>
+</head>
+<body class="access-locked">
+<div class="access-screen" id="accessScreen" role="dialog" aria-modal="true" aria-labelledby="accessTitle">
+ <div class="access-card">
+  <div class="access-mark">VÉRTICE · FERIHELADO 2026</div>
+  <h2 id="accessTitle">Antes de abrir el dashboard</h2>
+  <p>Los cambios de estado de las tareas se guardan actualmente en el navegador de cada persona, no se sincronizan con otros usuarios.</p>
+  <button type="button" id="accessContinue">Entendido, abrir dashboard</button>
+ </div>
+</div>
+
+<header>
+  <div class="bar"><a class="brandmark" href="#inicio" aria-label="Grupo Vértice, inicio"><span class="brandmark-symbol">V</span><span class="brandmark-copy"><strong>VÉRTICE</strong><span>GRUPO EMPRESARIAL</span></span></a><nav role="tablist" id="nav"></nav></div>
+</header>
+<main id="main"></main>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const li=a=>'<ul>'+a.map(x=>`<li>${x}</li>`).join('')+'</ul>';
+const tbl=(head,rows,cls=[])=>`<div class="tw"><table><thead><tr>${head.map((h,i)=>`<th class="${cls[i]||''}">${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr class="${r.c||''}">${(r.d||r).map((c,i)=>`<td class="${cls[i]||''}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const card=(t,b,x='')=>`<div class="card ${x}">${t?`<h3>${t}</h3>`:''}${b}</div>`;
+const det=(t,b,open)=>`<details ${open?'open':''}><summary>${t}</summary><div>${b}</div></details>`;
+
+/* ---------- AGENDA ---------- */
+const DAYS=[
+ {id:'vie',d:20,name:'Viernes 20',feria:'10:00 a. m. a 8:00 p. m.'},
+ {id:'sab',d:21,name:'Sábado 21',feria:'10:00 a. m. a 8:00 p. m.'},
+ {id:'dom',d:22,name:'Domingo 22',feria:'10:00 a. m. a 7:00 p. m.'}];
+// h,m en formato 24 h, hora de Caracas. own:false = cata del salón que no es de nuestras marcas
+const EV=[
+ {day:'vie',s:[15,0],e:[16,0],mise:'2:45–3:00 p. m.',type:'Workshop',t:'Gelato Cheesecake de pistacho',who:'Melissa',own:1},
+ {day:'vie',s:[17,0],e:[18,0],mise:'4:45–5:00 p. m.',type:'Workshop',t:'Claro de Verano · Sorbete de Pinot Grigio Riporta',who:'Paula Herrera',own:1},
+ {day:'sab',s:[14,0],e:[15,0],mise:'1:45–2:00 p. m.',type:'Workshop',t:'Gelato Bombón Quemado',who:'Melissa',own:1},
+ {day:'sab',s:[14,30],e:[15,15],type:'Cata',t:'Café y licores italianos con gelato Fior di Latte: 3 combinaciones irresistibles',logos:'Di Masi, Fior di Latte y Borbone',own:1},
+ {day:'sab',s:[15,45],e:[16,30],type:'Cata',t:'Vinos italianos con gelato Vassari',logos:'Imexsan142, Vassari',own:0},
+ {day:'sab',s:[17,0],e:[18,0],mise:'4:45–5:00 p. m.',type:'Workshop',t:'Gelato Ron Pasas',who:'Pedro Segovia',own:1},
+ {day:'sab',s:[17,0],e:[17,45],type:'Cata',t:'Birra Peroni helada y birra con helado by Fragolate: homenaje a Rubén Rojas',logos:'Basilico, Peroni, Visciano y Fragolate',own:0},
+ {day:'sab',s:[18,15],e:[19,0],type:'Cata',t:'Burbujas rojas y vinos italianos Terra Natale con Fragolate',logos:'Basilico, Terra Natale, Visciano y Fragolate',own:0},
+ {day:'dom',s:[12,0],e:[13,0],mise:'11:45 a. m.–12:00 m.',type:'Workshop',t:'Bruschetta de tomates frescos y gelato de pesto',who:'Paula y Pedro',own:1},
+ {day:'dom',s:[14,30],e:[15,15],type:'Cata',t:'Tiramisú MEC3 en tres versiones heladas: una experiencia hipergolosa',logos:'MEC3, Di Masi, Visciano y Borbone',own:1},
+ {day:'dom',s:[15,45],e:[16,30],type:'Cata',t:'Burbujas Di Masi y Gelato Fenice de frutas',logos:'Fenice y Di Masi',own:1},
+ {day:'dom',s:[16,15],e:null,type:'Taller',t:'I+D BAJO CERO: lo que la industria de alimentos nunca te contó sobre crear un producto y perderle el miedo al error',who:'Paula Herrera',own:1},
+ {day:'dom',s:[17,0],e:[18,0],mise:'3:45–4:00 p. m. (revisar)',type:'Workshop',t:'Sorbetto Rosa di Bosco Sin Azúcar',who:'Pedro Segovia',own:1},
+ {day:'dom',s:[17,0],e:[17,45],type:'Cata',t:'Burbujas italianas Gioiosa en armonía con Gelato Makao',logos:'Makao y Gioiosa (cambio anotado a mano)',own:0}];
+const fmt=([h,m])=>`${((h+11)%12)+1}:${String(m).padStart(2,'0')}`;
+const ap=([h])=>h<12?'a. m.':(h===12?'m.':'p. m.');
+const span=e=>e.e?`${fmt(e.s)}–${fmt(e.e)} ${ap(e.e)}`:`${fmt(e.s)} ${ap(e.s)}`;
+const when=(day,[h,m])=>Date.UTC(2026,10,DAYS.find(d=>d.id===day).d,h+4,m); // Caracas = UTC-4
+const COMBOS=['Dragon fruit con Pinot Grigio','Chocolate con grappa','Pistacho con anís','Amaretto con nocciola','Manzana con Tenuta Sant’Anna Pinot Grigio Brut','Aranciata con Prosecco DOC italiano','Tiramisú'];
+
+/* ---------- MARCAS ---------- */
+const BR=[
+{id:'artisanale',n:'Fenice Artisanale × MEC3',c:'#1E1E1E',tag:'Materias primas italianas para gelatería y repostería',
+ html:()=>`
+ ${card('Qué es',`<p>Empresa venezolana de materias primas e insumos de alta gama para gelatería y repostería artesanal. Distribuidor oficial en Venezuela de MEC3, marca italiana de ingredientes y semielaborados.</p><p>Portafolio: bases neutras, estabilizantes, pastas puras y saborizantes, veteados (variegati), coberturas, salsas topping e ingredientes especializados. Además asesora y capacita a heladeros, pasteleros y emprendedores.</p>`)}
+ <h4>Antes de la feria</h4>
+ ${tbl(['Fecha','Etapa','Qué incluye'],[
+  ['2–6 nov','Aprobación','Presupuesto, diseño del stand y contrato del espacio con Fexven.'],
+  ['9–13 nov','Producción','Impresión de material POP, catálogos, uniformes y bordados.'],
+  ['9–19 nov','Campaña','Pauta en redes e invitación directa a clientes y prospectos. Producción audiovisual.'],
+  ['16–17 nov','Capacitación y montaje','Anfitrionas: producto, speech, tablets y registro. Traslado, electricidad, armado y prueba completa del stand.'],
+  ['18 nov','Pruebas','Recetas de degustación, insumos y revisión de máquinas.']],['t'])}
+ <h4>Durante la feria</h4>
+ ${tbl(['Hora','Momento','Speech / tarea','Activaciones'],[
+  ['8:00','Ingreso','Revisión de stand, equipos, material, responsables y agenda.','Photo Booth · Tablets'],
+  ['11:00','Ingreso de personal de impulso','Check de speech y material a las anfitrionas.','Anfitrionas · Carnets para catálogo'],
+  ['12:00','Bienvenida público general','“¡Bienvenido a Fenice Artisanale! ¿Quiere probar un gelato hecho con nuestra materia prima italiana?”','Anfitrionas · Photo Booth · Abanicos · Degustaciones'],
+  ['12:00','Candidatos potenciales','“¿Ya tiene heladería o está pensando emprender? ¿Qué produce hoy y con qué equipos trabaja?”','Anfitrionas y ventas · Tablets base de datos · Ruleta de premios · Tarjetas de presentación'],
+  ['<span class="chip warn">sin hora</span>','Montaje y briefing','Entrega de material de marca y grabación de En Vivo.','Cupones de tinas de degustación · Tacos de hojas · Bolígrafos brandeados · Tarjetas de presentación'],
+  ['<span class="chip warn">sin hora</span>','Competencia de gelatería','Presencia de marca.','Kit: bolsa, delantal, paletas, etc.']],['t'])}
+ <h4>Entregables</h4>
+ <div class="grid g3">
+  ${card('Stand',li(['Render sobre ubicación del stand']))}
+  ${card('Audiovisual',li(['Video para pantallas TV','3 reels previos MEC3','1 post invitacional','3 reels recap (diarios)','Historias orgánicas','Reel final','Carruseles foto-experiencia durante el evento','En Vivo Workshop × MEC3']))}
+  ${card('Activaciones',li(['Anfitrionas de degustaciones y ventas','Tablets base de datos','Ruletas de premios','Photo Booth','Entrega de material de marca']))}
+  ${card('Eventos',li(['Exposición','Concurso de gelatería','Workshop Stand × MEC3','Cata × MEC3','Cata Fenice Artisanale']))}
+  ${card('Impresos y textil',li(['Uniforme anfitrionas','Identificadores de sabores','Ruleta de premios','Stickers QR Instagram','Photo Booth','Carnets QR Instagram (promotoras/vendedoras)','Flyer (abanicos informativos)','Tarjeta de presentación','Cupón tina de degustación','Lata Fenice Postre','Taco Post-it','Bolígrafos','Kit ganador y kit participante','2 Golden Ticket','Lanyards','Catálogo']))}
+  ${card('Redes',li(['Pre-evento: pieza “Estaremos presentes”','Durante: piezas Día 1, Día 2 y Día 3 “Presentes”']))}
+ </div>
+ <p class="small">El speech de ventas completo y la vitrina de 29 sabores están en las pestañas Ventas Fenice y Operación.</p>`},
+{id:'latam',n:'Fenice Latam',c:'#6B6F80',tag:'Selladoras, vasos y tapas · Everything’s possible',
+ html:()=>`
+ <div class="grid g2">
+  ${card('Qué es',`<p>Sistema de sellado de vasos: máquinas selladoras, vasos y tapas. El emprendedor vende sus bebidas y postres sellados herméticamente, con imagen profesional y su propia marca.</p><p class="quote">Tu mejor receta + nuestro sistema de sellado + tu logo.</p>`)}
+  ${card('Cliente ideal',`<p>Emprendedores de postres y bebidas: marquesas, quesillos, yogurt, Toddy, iced coffee, jugos, bebidas fermentadas.</p><p class="small">Lo que vende: presentación profesional con su logo, sin fábrica.</p>`)}
+  ${card('En la feria',`<p>La máquina selladora de Fenice Latam va dentro del stand de Fenice Artisanale (1 punto de 110 V).</p><p>Demostración: sellar un vaso frente al cliente en 5 segundos y pedirle que lo voltee.</p>`)}
+  ${card('Contacto',`<p>Instagram @FENICEVE</p><p>+58 424-5907644 · www.fenicelatam.com</p><p class="small">RIF J-013551305</p>`)}
+ </div>
+ <p class="small">Precios, vasos, tapas, objeciones y cierre están en la pestaña Ventas Fenice.</p>`},
+{id:'mykonos',n:'Mykonos',c:'#16207A',tag:'Pasaporte al Olimpo · experiencia de marca y conversión comercial',
+ html:()=>`
+ <h4>Activación de fidelización: del stand a la app</h4>
+ <ol class="steps"><li><b>Escanea</b> el QR, descarga la app y regístrate.</li><li><b>Tómate una foto</b> en el stand y etiquétanos en tus historias.</li><li><b>Juega</b> en la ruleta y gana premios (Mykollavero y tote bags).</li></ol>
+ <div class="grid g2">
+  ${card('Pasaporte del Olimpo','<p>Tres sellos en el stand: QR, Foto y Juego.</p>')}
+  ${card('Regla de oro','<p>Para jugar se muestra la app instalada. Quien no la tiene, la descarga con Atenea antes de su turno.</p>')}
+ </div>
+ <h4>Actividades del stand</h4>
+ ${tbl(['Inicio','Fin','Actividad','Concepto','Material'],[
+  ['9:00','11:00','Montaje y briefing','Revisión de stand, equipos, material, responsables y agenda.','Listado de material POP, encendido de Photo Booth, configuración de tablet.'],
+  ['11:00','11:30','Ingreso de personal de impulso','Check de speech y material a las anfitrionas.','Speech de ventas y ubicación en el stand.'],
+  ['12:00','9:00','Venta y activaciones de marca','Activación de marca: Mykopasaporte.','Mykopasaporte, stickers y carnets.']],['t','t'])}
+ <h4>Entregables</h4>
+ <div class="grid g3">
+  ${card('Stand',li(['Render sobre ubicación del stand','Vinyl de piso','Backing']))}
+  ${card('Audiovisual',li(['1 post/historia invitacional','3 videos recap','Historias orgánicas']))}
+  ${card('Activaciones',li(['Concurso invitacional en Canal de Difusión (2 entradas)','Ruleta de premios','Mykopasaporte','Photobooth']))}
+  ${card('Eventos',li(['Venta','Invitado especial']))}
+  ${card('Impresos y textil',li(['Uniforme anfitriona','Ruleta de premios y cupones (cupón visto: 1 topping extra)','Mykopasaporte y stickers','Bandeja de degustación','Carnet QR “Descarga la app”','Golden Ticket','SUPER Mykoticket','Material POP: tote bags y Mykollavero']))}
+ </div>`},
+{id:'fior',n:'Fior Di Latte',c:'#7C9072',tag:'La pausa perfecta que se recuerda y se comparte',
+ html:()=>`
+ <p class="lead">Hospitalidad italiana, estética editorial y activaciones para impulsar el posicionamiento y la compra en tienda después del evento.</p>
+ <h4>Objetivos de la activación</h4>
+ <div class="grid g2">
+  ${card('01 · Posicionamiento','<p>Reforzar a Fior di Latte como gelatería premium de calidad artesanal.</p><p class="small">Mecánica: presentación del portafolio, degustaciones y atributos diferenciales.</p>')}
+  ${card('02 · Captación','<p>Contactos de clientes interesados en las experiencias de Fior di Latte para eventos.</p><p class="small">Mecánica: anfitrionas presentan el servicio de eventos y captan datos con registro y volanteo.</p>')}
+  ${card('03 · Conversión','<p>Incentivar la compra de gelato en la feria y futuras visitas a tiendas.</p><p class="small">Mecánica: activaciones con memoria digital y beneficios en la recompra o prueba de gelato.</p>')}
+  ${card('04 · Recordación','<p>Momentos memorables y compartibles.</p><p class="small">Mecánica: photobooth «Captura tu pausa perfecta».</p>')}
+ </div>
+ <h4>Cronograma durante la feria</h4>
+ ${tbl(['Inicio','Fin','Tipo','Actividad','Descripción','Responsable','Material / control'],[
+  ['08:00','09:30','Operación','Montaje y briefing','Revisión del stand, equipos, material POP, productos y organización del equipo.','Coordinación','Checklist; menú, habladores de bacha y material POP'],
+  ['09:30','11:00','Operación','Preparación y apertura','Verificación de inventario, preparación de dinámicas y briefing de promotoras.','Equipo de stand','Uniforme de promotoras, carnet con QR y control de stock'],
+  ['12:00','1:00','Activación','Volanteo de marca','Invitar a conocer Fior di Latte, su portafolio y las experiencias disponibles.','Promotora','Volantes y abanicos; control de entregas'],
+  ['1:00','2:00','Activación','Photobooth: Captura tu pausa perfecta','Invitar a fotografiarse y compartir su experiencia.','Promotora / apoyo','Photobooth y registro fotográfico'],
+  ['2:00 PM','4:00 PM','Activación','Dinámica de memoria','Invitar al juego de memoria y entregar cupones después de la compra.','Promotora','Cupones de memoria; registro de participantes'],
+  ['4:00 PM','6:00 PM','Activación','Photobooth: Captura tu pausa perfecta','Después de la compra, entregar los wallets.','Promotora','Wallets; control de unidades entregadas'],
+  ['6:00 PM','7:00 PM','Activación','Fior memoria','Incentivar la interacción y entregar tote bags.','Promotora / caja','Tote bags; registro de entregas'],
+  ['7:30 PM <span class="chip warn">revisar</span>','7:00 PM','Operación','Entrega de abanico','1 abanico al comprobar que sigue la cuenta, publicó una historia y etiquetó a Fior di Latte. Falta confirmar el usuario oficial.','Anfitriona de venta','Abanicos; registro de entregas']],['t','t'])}
+ <h4>Anfitrionas</h4>
+ <div class="grid g2">
+  ${card('Presentación',li(['Vestuario elegante y uniforme en línea con la marca.','Trato cálido, discreto y profesional.','Conocimiento del portafolio y de las dinámicas.']))}
+  ${card('Speech',`<p class="quote"><b>Bienvenida.</b> “Bienvenida a la pausa perfecta. Descubre la esencia del auténtico gelato italiano con Fior di Latte.”</p><p class="quote"><b>Eventos.</b> “Haz de tu próximo evento una experiencia especial con nuestro catering de gelatos artesanales.”</p><p class="quote"><b>Fotografía.</b> “Los mejores momentos merecen recordarse. Te invitamos a capturar el tuyo con Fior di Latte.”</p><p class="quote"><b>Beneficios.</b> “Tu pausa perfecta viene con un detalle especial. Por tu compra, recibe un obsequio exclusivo de Fior di Latte.”</p>`)}
+ </div>
+ <h4>Entregables y kits</h4>
+ <div class="grid g3">
+  ${card('Stand',li(['Render de la ubicación del stand','Brandeo de stand']))}
+  ${card('Audiovisual',li(['1 reel previo en colab con Andrés','1 reel con Valeska','Historias pre, durante y después','Historias orgánicas durante el evento','2 reels recap','1 reel final','Carrusel foto-experiencia']))}
+  ${card('Activaciones',li(['Anfitriona de venta y activaciones','Fior Memoria','Photobooth','Abanicos','Carnets con QR']))}
+  ${card('Impresos y textil',li(['Volantes','Photobooth','Menú','Habladores de vitrina','Uniforme de promotoras','Cupones de memoria','Abanicos','Carnet con QR']))}
+  ${card('Kit participantes / jurado',li(['Cupón para 1 gelato gratis en FDL','Gorra de Fior di Latte','Tarjeta de agradecimiento','Golden Ticket: un año de helado gratis (solo para el ganador)']))}
+  ${card('Producción en 5 pasos',li(['<b>Diseño:</b> piezas, volante y elementos de marca.','<b>Producción:</b> impresión, wallets, montaje y suministros.','<b>Capacitación:</b> guiones, mecánicas de entrega y protocolos.','<b>Feria:</b> activar, medir, reponer y documentar.','<b>Cierre:</b> métricas y seguimiento comercial.']))}
+ </div>
+ <h4>Comunicación e indicadores</h4>
+ <div class="grid g2">
+  ${card('Antes, durante y después',li(['<b>Antes:</b> anunciar participación (sabores especiales con Andrés), video invitacional con Valeska, comunicar evento, ubicación y fechas.','<b>Durante:</b> historias de activación, recap diario del espacio y del equipo, recordatorios del beneficio.','<b>Después:</b> resumen visual, seguimiento a prospectos, balance de resultados.']))}
+  ${card('Cómo medimos',li(['<b>Eventos:</b> contactos captados y solicitudes de cotización.','<b>Compra:</b> ventas y tickets vinculados al beneficio.','<b>Participación:</b> fotografías entregadas y participación en dinámicas.','<b>Comunicación:</b> alcance, interacciones y contenido compartido.']))}
+ </div>`},
+{id:'frogurt',n:'Frógurt',c:'#8EA3C8',tag:'Good for U · helado de yogurt fresco, ligero y divertido',
+ html:()=>`
+ <h4>Objetivos y mecánicas</h4>
+ <div class="grid g2">
+  ${card('01 · Posicionamiento','<p>Reforzar la identidad de Frógurt.</p><p class="small">Mecánica: volanteo informativo con costos y ubicaciones.</p>')}
+  ${card('02 · Captación','<p>Generar contactos de clientes potenciales.</p><p class="small">Mecánica: encuesta informativa (formulario).</p>')}
+  ${card('03 · Conversión','<p>Incentivar la compra con un beneficio concreto.</p><p class="small">Mecánica: por la compra del Cookie Monster se gira el cubo Frógurt.</p>')}
+  ${card('04 · Recordación','<p>Recuerdos compartibles asociados a la marca.</p><p class="small">Mecánica: subir una historia y etiquetarnos para ganarse el llavero cookie.</p>')}
+ </div>
+ <h4>Dinámicas y cupones</h4>
+ <div class="grid g2">
+  ${card('Las 6 dinámicas','<ol><li>Arma tu tina Frógurt (tablet)</li><li>Cookie Monster (muñecote)</li><li>Cubo Frógurt</li><li>Globos Frógurt con raspadito</li><li>Llaveros Frógurt</li><li>Volanteo y entrega de stickers</li></ol>')}
+  ${card('Premios en cupones',`<p><b>Cubo:</b> 1 topping gratis · 50% de descuento · 1 barquilla gratis.</p><p><b>Arma tu tina:</b> 10% de descuento · 1 barquilla gratis · 1 tina pequeña.</p><p class="small">Kit participantes/jurado: termo para los tres ganadores, cupón de 1 tina pequeña y llavero Cookie Monster.</p>`)}
+ </div>
+ <h4>Cronograma · viernes 20/11 <span class="chip warn">solo hay viernes en el documento</span></h4>
+ ${tbl(['Inicio','Fin','Tipo','Actividad','Descripción','Responsable','Material / control'],[
+  ['08:00','09:30','Operación','Montaje y briefing','Revisión de stand, equipos, POS, QR, material, responsables y agenda.','Coordinación','Checklist; sin consumo POP'],
+  ['09:30','11:00','Operación','Preparación y apertura','Prueba de ruleta/cubo, conteo inicial y asignación de material por bloque.','Equipo de stand','Verificar stocks'],
+  ['11:30','12:15','Activación','Volanteo de marca / Cookie Monster','Invitar al stand y presentar Frógurt; sin condición de compra.','Promotora','Volantes; registrar unidades entregadas'],
+  ['12:30','13:15','Activación','Arma tu tina Frógurt','Participación después de la compra.','Promotora / apoyo','Equipo digital; registro de giros'],
+  ['14:00','14:45','Activación','Entrega de stickers','Entrega libre con obligación de seguir a la marca.','Promotora','Stickers; registrar unidades entregadas'],
+  ['15:15','16:00','Activación','Girar cubo Frógurt / Cookie Monster','Solo por compra de Cookie Monster: validar ticket, 1 giro por compra.','Promotora / caja','Cubo + cupones; control de compras'],
+  ['16:30','17:15','Activación','Entrega de llaveros','1 llavero al comprar 1 tina.','Promotora','Comprobar compra'],
+  ['17:30','19:30','Operación','Entrega de globos / Monster','Invitar al stand y entregar globos; sin condición de compra.','Promotora','Portafolio completo'],
+  ['19:30','20:00','Operación','Cierre y reporte','Registrar ventas, seguidores, historias etiquetadas, giros y consumo POP; balance diario.','Responsable de marca / caja','Actualizar hoja de inventario']],['t','t'])}
+ <h4>Anfitriona</h4>
+ <div class="grid g2">
+  ${card('Presentación',li(['Braga Frógurt.','Atención cálida, dinámica y familiar.','Conocimiento del portafolio y las dinámicas.','1 anfitriona.']))}
+  ${card('Speech',`<p class="quote"><b>Bienvenida.</b> “¡Bienvenido a Frógurt! Ven a descubrir una forma fresca y divertida de disfrutar tu helado de yogurt.”</p><p class="quote"><b>Eventos.</b> “Conoce nuestras opciones para compartir.” <span class="chip warn">falta información de eventos</span></p><p class="quote"><b>Arma tu tina.</b> “¡Hagamos de este momento un recuerdo!”</p><p class="quote"><b>Cubo.</b> “Participa con Frógurt: por la compra de la Cookie Monster tienes acceso a girar el cubo.”</p>`)}
+ </div>
+ <h4>Entregables, comunicación e indicadores</h4>
+ <div class="grid g3">
+  ${card('Stand y audiovisual',li(['Render de la ubicación, display impreso y brandeo de stand','Historias: invitacional, durante la feria y de agradecimiento','Historias orgánicas durante el evento','3 reels recap','Carrusel foto-experiencia']))}
+  ${card('Impresión y textil',li(['Stickers y volantes (impresión digital)','Llaveros galleta Cookie Monster (PAYA)','Globos (GLOBOS ZAM)','Uniforme de promotora','Cupones digitales del juego de tinas','Cupones del cubo Frógurt','Menú y habladores de vitrina']))}
+  ${card('Comunicación',li(['<b>Antes:</b> anunciar participación, colab con influencers, fechas, ubicación y convocatoria.','<b>Durante:</b> historias y registros de activaciones, resumen diario, recordatorios de sorpresas.','<b>Después:</b> recap visual diario, seguimiento a contactos, balance y aprendizajes.']))}
+  ${card('Indicadores',li(['<b>Eventos:</b> contactos captados (solicitudes/oportunidades por definir).','<b>Compra:</b> ventas y tickets (conversión de la promoción por definir).','<b>Participación:</b> participantes en dinámicas (según el sheet).','<b>Comunicación:</b> alcance, interacciones y contenido compartido.']))}
+ </div>`},
+{id:'uno',n:'Uno +',c:'#F15A22',tag:'¡Resuelve ese antojo!',
+ html:()=>`
+ <div class="grid g2">
+  ${card('Ruleta “¡Juega uno más!”',`<p>Tragamonedas en tablet: tres iguales y es tuyo.</p>${li(['<b>3 iguales:</b> ese producto gratis','<b>2 iguales:</b> salsa extra'])}`)}
+  ${card('Una Capa+',`<p>Postre en vaso: chocolate, pie de limón o tres leches.</p><p class="big">1 × REF 5</p><p class="small">Tasa BCV</p>`)}
+ </div>
+ <h4>Combos del volante / menú</h4>
+ ${tbl(['Combo','Incluye','Precio'],[
+  ['POP+','8 pop-corns de pollo · 3 tequeños · 1 bebida · 1 salsa','REF 5,99'],
+  ['LUNCH+','4 tenders de pollo · 3 tequeños · 1 bebida · 1 salsa','REF 5,99'],
+  ['COMEN+','12 tenders de pollo · 15 tequeñitos · 1 bebida · 1 salsa','REF 14,99'],
+  ['COMEN+ (versión grande)','12 tenders de pollo · 15 tequeñitos · 1 bebida · 1 salsa','REF 19,99']],['','','n'])}
+ <p class="small">Los dos COMEN+ aparecen con el mismo texto en el volante; la foto del de REF 19,99 muestra más acompañantes. Instagram en el volante: @yoquierounomas. El documento de Uno + solo trae volanteo/menú y ruleta: no incluye cronograma ni speech.</p>`}
+];
+
+const BX={
+ artisanale:{c:'#17171B',fg:'#FFFFFF',h:92,short:'Fenice Artisanale',imgs:[['fen1','Carnet QR, stickers QR, abanico/flyer y cupón'],['fen2','Tarjeta de presentación, ruleta de premios y photobooth'],['fen3','Contenido para redes: pre-evento y durante el evento']]},
+ latam:{c:'#B3211B',fg:'#FFFFFF',h:70,short:'Fenice Latam',imgs:[]},
+ mykonos:{c:'#16207A',fg:'#FFFFFF',h:84,short:'Mykonos',imgs:[['myk1','Mykopasaporte, stickers, cupones y Mykoruleta de premios'],['myk2','Bandeja de degustación, carnet QR y photobooth']]},
+ fior:{c:'#C3D0B8',fg:'#27351F',h:76,short:'Fior Di Latte',imgs:[['fdl1','Volanteo, photobooth, Fior Memoria, abanicos, cupones y carnets'],['fdl2','Kit de participantes/jurado y Golden Ticket'],['fdl3','Piezas digitales']]},
+ frogurt:{c:'#C9D4EC',fg:'#141B52',h:64,short:'Frógurt',imgs:[['fro1','Cupones de las dinámicas: cubo y arma tu tina'],['fro2','Kit de participantes/jurado']]},
+ uno:{c:'#F26422',fg:'#2A1568',h:80,short:'Uno +',imgs:[['uno1','Volante/menú y ruleta en tablet']]}};
+BR.forEach(b=>Object.assign(b,BX[b.id]));
+const pop=(b,tag='button')=>`<${tag} class="pop" ${tag==='button'?`data-brand="${b.id}" aria-label="Ver ${b.n}"`:'aria-hidden="true"'}><i style="background:${b.c};height:${b.h}px"></i><u></u>${tag==='button'?`<span>${b.short}</span>`:''}</${tag}>`;
+const gal=a=>a.length?`<h4>Material</h4><div class="gal">${a.map(([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy" width="1200" height="675"><figcaption>${c}</figcaption></figure>`).join('')}</div>`:'';
+
+/* ---------- OPERACIÓN ---------- */
+const POWER=[['Mykonos',4,1],['Frógurt',3,1],['Fior di Latte',5,0],['Uno +',3,1],['Fenice Artisanale',6,5]];
+const EQUIP={
+ 'Mykonos':[['Toppinera','110 V',1],['Máquina de helado','220 V',1],['Freezer','110 V',1],['Tomas de corriente — caja','110 V',2]],
+ 'Frógurt':[['Toppinera','110 V',1],['Máquina de helado','220 V',1],['Tomas de corriente — caja','110 V',2]],
+ 'Fior di Latte':[['Carrito','110 V',1],['Freezer','110 V',2],['Tomas de corriente — caja','110 V',2]],
+ 'Uno +':[['Freidora','220 V',1],['Freezer','110 V',1],['Tomas de corriente — caja','110 V',2]],
+ 'Fenice Artisanale':[['Exhibidora','110 V',1],['Abatidor','220 V',1],['Nevera vertical','110 V',1],['Gelmatic','220 V',1],['Máquina de chantilly','220 V',1],['Cubo 1','220 V',1],['Cubo 2','220 V',1],['Pantalla','110 V',1],['Máquina selladora (Fenice Latam)','110 V',1],['Tomas de corriente','110 V',2]]};
+const VITRINA=['Açaí','Acerola','Cookies Pecan','Cookies Lemon','Biscottino & Cookies Original','French Vanilla','Dubai','Cheesecake Mango/Parchita','Vainilla Madagascar','Choco Blonde','Cherry Mania','Baklava','Brezel Cream','Caramelo Salado','Pistacchio Selection','Maní sin Azúcar y Chocolate','Gianduja Rock','Kinder Bueno','Cacao','Dolce latte','Amaretto Caramel','Mascarpone','Dragon summer','Cocco & Frutti Rossi','Whisky','Cinnamon Roll','Vanilla Bourbon','Mandorla','Mango Sin Azúcar'];
+const REC=[
+ {g:'Le Premier Souvenir (El Primer Recuerdo)',d:'Copa helada inspirada en un chocolate caliente: gelato de chocolate, semifreddo de canela, marshmallow de vainilla, feuilletine de especias y salsa de chocolate.',r:[
+  ['Gelato de chocolate 60% Sur del Lago Franceschi',[['Agua',1109],['Chocolate Franceschi 60% Sur del Lago',560],['Sacarosa',100],['Dextrosa',84],['Leche descremada en polvo',50],['Glucosa en polvo',44],['Neutro JG5',10],['Proteína',40],['Sal',3]],'2000'],
+  ['Leche infusionada con canela',[['Leche',200],['Canela en rama',40]],'240'],
+  ['Crema inglesa',[['Leche infusionada',150],['Yema',60],['Sacarosa',70],['Sal','1,2']],'281,2'],
+  ['Semifreddo de canela',[['Crema montada',160],['Crema inglesa',120],['Agua (hidratación gelatina)',35],['Gelatina',7]],'322'],
+  ['Feuilletine de especias',[['Claras',200],['Harina de trigo',150],['Azúcar glass',150],['Mantequilla',150],['Leche líquida descremada',76],['Jengibre','5,6'],['Canela','2,8'],['Nuez moscada','2,8'],['Clavo','2,8'],['Sal','1,7']],'741,7'],
+  ['Salsa de chocolate',[['Chocolate 60% Franceschi Sur del Lago',75],['Crema de leche',75],['Agua',50],['Mantequilla',25],['Sacarosa',23],['Cacao en polvo alcalinizado Franceschi',13],['Chocolate de leche Franceschi',13]],'274'],
+  ['Marshmallow de vainilla',[['Sacarosa',200],['Clara de huevo',90],['Agua (almíbar)',70],['Agua (hidratación)',60],['Glucosa',24],['Gelatina',15],['Vaina de vainilla',1]],'460']]},
+ {g:'II · Lo que hay en la despensa…',d:'Mistery box de fruta: sorbete de la caja sorpresa. No lleva receta fija en el recetario.',r:[]},
+ {g:'III · L’Épiphanie d’Or (La Epifanía Dorada) · bacha',d:'Gelato de flan de azafrán con praliné de pistacho y variegato de parchita con piña y flor de naranja amarga. Feuilletines como hojas de recetario y decoración en placas de chocolate.',r:[
+  ['Gelato de azafrán',[['Leche descremada',3214],['Crema de leche','918 *'],['Sacarosa',310],['Caramelo',240],['Yema de huevo',489],['Leche en polvo descremada',275],['Glucosa en polvo',244],['Dextrosa',183],['Miel',91],['Neutro JG5',30],['Azafrán',6]],'6000'],
+  ['Caramelo',[['Sacarosa',240]],'240'],
+  ['Infusión de flor de naranja amarga',[['Agua',300],['Flor de naranja amarga',15]],'315'],
+  ['Variegato de parchita con piña y flor de naranja amarga',[['Agua de flor de naranja amarga (infusión)',225],['Dextrosa',216],['Zumo de parchita',210],['Piña en brunoise',140],['Sacarosa',90],['Glucosa en polvo',72],['Zumo de piña',60],['Zumo de limón',10],['Zumo de naranja',27],['Pectina',4]],'1054'],
+  ['Praliné de pistacho',[['Sacarosa',240],['Pistacho',140],['Sal',4]],'384'],
+  ['Feuilletine de decoración',[['Harina de trigo',185],['Agua',155],['Azúcar glass',85],['Clara',35],['Mantequilla',15],['Sal','0,3']],'475,3'],
+  ['Decoración de chocolate',[['Mini tabletas Franceschi',250],['Cacao en polvo Franceschi',20],['Polvo dorado',5]],'275']]}];
+
+/* ---------- VENTAS ---------- */
+const OBJ=[
+ ['Fenice','“Está muy cara.”','“Te entiendo. Piénsalo como una inversión: con ella tu producto se ve como una marca profesional y llega sin derrames. Además tienes un año de garantía y revisión técnica gratuita. Si vendes bebidas en general, la Automática 5 Sec está en $719,99. ¿Qué vendes tú?”'],
+ ['Fenice','“Todavía soy pequeño.”','“Justamente para eso es Fenice: no necesitas una fábrica ni producción masiva. Solo tu receta, nuestro sellado y tu logo.”'],
+ ['Fenice','“¿Y si se daña?”','“Tiene un año de garantía por defecto de fábrica, revisión técnica gratuita y servicio técnico en Caracas.”'],
+ ['Fenice','“500 vasos es mucho.”','“Es el mínimo para personalizarlos con tu logo. Si vendes 20 al día, en menos de un mes los usaste. También los hay sin serigrafía.”'],
+ ['Fenice','“No estoy en Caracas.”','“No hay problema: enviamos a todo el país por MRW, Zoom y Liberty Express.”'],
+ ['Fenice','“¿Cuánto tardan?”','“Los vasos personalizados están en 7 a 10 días hábiles después de que apruebes el diseño.”'],
+ ['Fenice','“No sé cuál máquina me sirve.”','“Cuéntame qué haces. Para postres en capas o bebidas con gas o fermentadas, la Nova. Para bebidas en general, la Automática 5 Sec.”'],
+ ['Artisanale','“Ya tengo proveedor.”','“¡Qué bueno! Prueba este y compara. Muchos clientes nos usan para sus sabores premium o de tendencia, junto a lo que ya tienen.”'],
+ ['Artisanale','“Es caro.”','“La dosificación es baja: por ejemplo, 40 a 80 g por kilo de base blanca. Una lata rinde muchísimo y dura de 18 a 36 meses cerrada.”'],
+ ['Artisanale','“No sé cómo usarlo.”','“Cada producto trae su dosificación, y tenemos escuela y laboratorio para capacitarte.”'],
+ ['Artisanale','“La presentación es muy grande.”','“Son latas y cubos de 3 a 6 kg, pensados para negocio. Bien cerrados y lejos del calor se conservan perfecto.”'],
+ ['Artisanale','“Mis clientes no comen azúcar.”','“Tenemos la línea G con edulcorantes: G Creme, G Frutte y Amarena G. Solo recuerda que en exceso puede tener efecto laxante.”'],
+ ['Artisanale','“¿Tiene alérgenos?”','“Déjame mostrarte la etiqueta para que lo veas exacto.” Nunca respondas de memoria.']];
+
+/* ---------- RENDER ---------- */
+function dayCol(d,all){
+  const now=Date.now();
+  const evs=EV.filter(e=>e.day===d.id&&(all||e.own)).map(e=>{
+    const st=when(e.day,e.s),en=e.e?when(e.day,e.e):st+45*6e4,kind=e.type==='Cata'?'cata':'ws';
+    const meta=[e.who?`Ponente: ${e.who}`:'',e.mise?`Mise en place ${e.mise}`:'',e.logos?`Logos: ${e.logos}`:''].filter(Boolean).join(' · ');
+    return `<article class="ev ${e.own?kind:'ext'} ${now>=st&&now<en?'now':''}"><div class="evt"><span>${span(e)}</span><span class="chip ${e.own?kind:'ext'}">${e.type}${e.own?'':' · otra marca'}</span></div><p>${e.t}</p>${meta?`<span class="small">${meta}</span>`:''}</article>`;}).join('');
+  const [dw,dn]=d.name.split(' ');
+  return `<div class="day"><div class="dayh"><span class="dnum">${dn}</span><div><b>${dw}</b><span class="small">Feria de ${d.feria}</span></div></div>${evs}</div>`;
+}
+function countdown(){
+  const now=Date.now(),open=when('vie',[10,0]),close=when('dom',[19,0]);
+  if(now>close)return 'Feria finalizada';if(now>=open)return 'Feria en curso';
+  const d=Math.ceil((open-now)/864e5);return d===1?'Falta 1 día':`Faltan ${d} días`;
+}
+function nextCard(){
+  const now=Date.now(),own=EV.filter(e=>e.own).map(e=>({...e,st:when(e.day,e.s)})).sort((a,b)=>a.st-b.st);
+  const open=when('vie',[10,0]),close=when('dom',[19,0]);
+  const nx=own.find(e=>e.st>now);
+  if(now>close)return card('La feria terminó','<p>Toca recap, seguimiento a contactos y balance de resultados por marca.</p>','next');
+  const days=Math.ceil((open-now)/864e5);
+  const head=now<open?`<p class="small">Faltan ${days} día${days===1?'':'s'} para abrir · viernes 20, 10:00 a. m.</p>`:'<p class="small">Feria en curso</p>';
+  const dn=DAYS.find(d=>d.id===nx.day).name;
+  return card('Próxima actividad nuestra',`${head}<p class="big">${dn} · ${span(nx)}</p><p><span class="chip ${nx.type==='Cata'?'cata':'ws'}">${nx.type}</span> ${nx.t}${nx.who?` · ${nx.who}`:''}</p>`,'next');
+}
+const T={
+inicio:()=>`
+ <div class="hero">
+  <div><p class="eyebrow">Grupo Vértice · centro de mando interno</p>
+   <h2 class="mega">Feri<em>helado</em><br>2026</h2>
+   <p>Seis marcas, cinco stands y tres días. Horarios, activaciones, speech de ventas y operación en un solo lugar.</p>
+   <div class="hero-meta"><span class="hot">${countdown()}</span><span>20 al 22 de noviembre</span><span>C.C. Líder, Caracas</span></div></div>
+  <div class="pops">${BR.map(b=>pop(b)).join('')}</div>
+ </div>
+ <div class="grid g2">${nextCard()}
+  ${card('Horario de la feria',tbl(['Día','Abierta al público'],DAYS.map(d=>[d.name+' nov',d.feria])))}
+ </div>
+ <h4>Nuestras marcas</h4>
+ <div class="grid g3">${BR.map(b=>`<button class="tile" style="background:${b.c};color:${b.fg}" data-brand="${b.id}"><h3>${b.n}</h3><span>${b.tag}</span></button>`).join('')}</div>
+ <h4>Lo básico</h4>
+ <div class="grid g2">
+  ${card('Lugares',li(['<b>Stands:</b> Espacios Caracas, C.C. Líder.','<b>Workshops:</b> terraza del C.C. Líder.','<b>Catas:</b> Salón de catas Made in Italy, C.C. Líder. Costo $8 afiliado, $10 no afiliado.','Las piezas de las catas llevan los logos de Cavenit y Ferihelado arriba y los comerciales abajo.']))}
+  ${card('Contacto de operación','<p><b>Laura Bermúdez</b> · Gerencia Comercial Operativa, Grupo Vértice</p><p>+58 412 204 2702 · laura@verticegrupo.com</p><p class="small">Firma el requerimiento eléctrico del 11 de noviembre.</p>')}
+ </div>
+ ${card('Por confirmar',li([
+  'A cuál cata corresponde cada una de las 7 combinaciones (el orden está en Agenda).',
+  'Domingo: la cata de Burbujas Di Masi con Gelato Fenice (3:45–4:30) se cruza con el taller I+D Bajo Cero (4:15).',
+  'Domingo: el workshop Sorbetto Rosa di Bosco es a las 5:00, pero su mise en place figura a las 3:45–4:00.',
+  'Horarios de stand: Mykonos indica venta hasta las 9:00 y Frógurt activaciones desde las 11:30 del viernes, pero la feria abre el viernes a la 1:00 p. m. y cierra a las 8:00 (7:00 el domingo).',
+  'Fior di Latte: la entrega de abanico figura de 7:30 a 7:00 PM y falta el usuario oficial a etiquetar.',
+  'Fenice Artisanale: los bloques Montaje y briefing y Competencia de gelatería no tienen hora.',
+  'Frógurt: falta la información de eventos del speech, los indicadores por definir y el cronograma de sábado y domingo.',
+  'Uno +: no hay cronograma ni speech en su documento.',
+  'Speech Fenice: las tablas de bases, variegatos y pastas llegaron vacías en el PDF.',
+  'Recetario: la crema de leche del gelato de azafrán (918 g) está marcada por confirmar en el original.']),'warnbox')}`,
+agenda:()=>`
+ <h2>Agenda de workshops y catas</h2>
+ <p class="lead">Fenice con MEC3. Los workshops son en la terraza y las catas en el Salón Made in Italy.</p>
+ <div class="row"><div class="seg" id="dayseg">${[{id:'all',name:'Los 3 días'},...DAYS].map(d=>`<button data-day="${d.id}" aria-pressed="${S.day===d.id}">${d.name}</button>`).join('')}</div>
+ <label class="small"><input type="checkbox" id="extchk" ${S.ext?'checked':''}> Ver también las catas de otras marcas</label></div>
+ <div class="days">${DAYS.filter(d=>S.day==='all'||S.day===d.id).map(d=>dayCol(d,S.ext)).join('')}</div>
+ <div class="grid g2">
+  ${card('Orden de las combinaciones en las catas',`<ol class="combo">${COMBOS.map(c=>`<li>${c}</li>`).join('')}</ol><p class="small">Orden indicado por Coordinación Comercial. Falta asignar cada combinación a su cata.</p>`)}
+  ${card('Nuestras tres catas',li(['<b>Sáb 2:30–3:15</b> · Café y licores italianos con gelato Fior di Latte (3 combinaciones).','<b>Dom 2:30–3:15</b> · Tiramisú MEC3 en tres versiones heladas.','<b>Dom 3:45–4:30</b> · Burbujas Di Masi y Gelato Fenice de frutas.'])+'<p class="small">Entrada al salón: $8 afiliado, $10 no afiliado.</p>')}
+ </div>`,
+marcas:()=>{const b=BR.find(x=>x.id===S.brand);return `
+ <div class="seg" id="brseg">${BR.map(x=>`<button data-brand="${x.id}" aria-pressed="${x.id===S.brand}"><i style="background:${x.c}"></i>${x.n}</button>`).join('')}</div>
+ <div class="banner" style="background:${b.c};color:${b.fg}"><div><h2>${b.n}</h2><p>${b.tag}</p></div>${pop(b,'div')}</div>
+ <div class="stack" style="gap:18px;--brand:${b.id==='artisanale'?'var(--accent)':b.id==='mykonos'?'var(--accent)':b.fg==='#FFFFFF'?b.c:'var(--accent)'}">${b.html()}${gal(b.imgs)}</div>`},
+ventas:()=>`
+ <h2>Speech de ventas Fenice y Fenice Artisanale</h2>
+ <p class="lead">Guía para anfitrionas y vendedoras. Dos marcas hermanas: Fenice resuelve cómo presentar y vender el producto; Fenice Artisanale, con qué ingredientes hacerlo. La venta cruzada es la mejor arma.</p>
+ <div class="grid g2">
+  ${card('Datos que hay que decir sin mirar',li(['<b>Precios:</b> Nova Machine $900 · Automática 5 Sec $719,99','<b>Colores:</b> blanco o negro','<b>Garantía:</b> 1 año por defecto de fábrica + revisión técnica gratuita','<b>Vasos:</b> 190, 250, 330 (versátil), 330 (bebidas) y 500 ml','<b>Pedido mínimo:</b> 500 vasos · personalizados en 7 a 10 días hábiles','<b>Servicio técnico y entregas:</b> Caracas','<b>Envíos:</b> MRW, Zoom y Liberty Express']))}
+  ${card('Regla de oro','<p>Sonríe, haz contacto visual y ofrece algo antes de pedir algo. Una cucharita de helado o una demostración de 5 segundos abre más conversaciones que cualquier discurso.</p>'+li(['De pie, frente al stand; nunca detrás de la mesa ni con el teléfono.','Bandeja de degustación y un vaso recién sellado siempre listos.','Entusiasmo sin presionar: si solo quiere probar, que pruebe; después pregunta.','Usa el nombre del cliente cuando te lo diga.']))}
+ </div>
+ ${tbl(['','Fenice','Fenice Artisanale'],[
+  ['Qué es','Sistema de sellado de vasos: máquinas selladoras, vasos y tapas','Materias primas italianas para helado artesanal y pastelería: bases, variegatos y pastas'],
+  ['Lema','Everything’s possible','Aliados estratégicos de la tradición italiana'],
+  ['Cliente ideal','Emprendedores de postres y bebidas: marquesas, quesillos, yogurt, Toddy, iced coffee, jugos, bebidas fermentadas','Gelaterías, heladerías, pizzerías, panaderías, pastelerías y emprendedores del helado'],
+  ['Lo que vende','Presentación profesional con su logo, sin fábrica','Sabor, textura y calidad italiana con dosificación sencilla'],
+  ['Instagram','@FENICEVE','@FENICE.ARTISANALE'],
+  ['Contacto','+58 424-5907644 · www.fenicelatam.com','+58 412-5891348 · ventas@feniceartisanale.com'],
+  ['RIF','J-013551305','J-207456705']])}
+ ${det('Fenice · catálogo: máquinas, vasos, tapas y condiciones',`
+  ${tbl(['Equipo','Precio','Recomendada para','Cómo es'],[['Nova Machine','$900','Postres en capas, bebidas carbonatadas y fermentadas','Equipo de mesa con pantalla grande frontal, protector transparente y plato giratorio'],['Automática 5 Sec','$719,99','Sellado de bebidas en general','Equipo vertical con panel digital y botones; sella en 5 segundos']],['','n'])}
+  <p><b>Regla fácil:</b> postres en capas, bebidas con gas o fermentadas (kombucha, refrescos artesanales) → Nova Machine. Bebidas en general (jugos, Toddy, café frío, tés) y rapidez → Automática 5 Sec.</p>
+  <div class="grid g2">
+   ${tbl(['Vaso','Uso ideal'],[['190 ml','Bebidas: Toddy, iced coffee, jugos naturales'],['250 ml','Postres: marquesas, quesillo, yogurt'],['330 ml (versátil)','El más versátil: bebidas y postres'],['330 ml (bebidas)','Especialmente diseñado para bebidas'],['500 ml','Bebidas: Toddy, iced coffee, jugos naturales']],['t'])}
+   ${tbl(['Condición','Detalle'],[['Pedido mínimo','500 vasos'],['Entrega (personalizados)','7 a 10 días hábiles después de aprobar el diseño'],['Entregas locales','En Caracas, donde también hay servicio técnico'],['Envíos nacionales','MRW, Zoom y Liberty Express']])}
+  </div>
+  <p><b>Personalización:</b> sin serigrafía o con diseño: unicolor a 1 cara, 2 caras con artes distintas, o semicorrido.</p>
+  <p><b>Tapas:</b> clásica · clásica abre fácil · abre fácil negra · abre fácil plateada · abre fácil dorada.</p>`)}
+ ${det('Fenice · speech en 5 pasos (2 a 4 minutos)',`
+  ${card('1 · Enganche (10 segundos)',li(['“¡Hola! ¿Tú haces postres o bebidas para vender? Te muestro cómo ponerles tu logo y sellarlos como una marca grande.”','“¿Sabías que no necesitas una fábrica para tener tu propia línea de bebidas? Ven, te lo muestro en 5 segundos.”','“Mira cómo queda un quesillo sellado… ¿te imaginas el tuyo así, con tu marca?”']))}
+  ${card('2 · Preguntas',li(['“¿Qué vendes hoy? ¿Postres, bebidas o ambos?”','“¿Cómo los empacas ahora?”','“¿Cuántas unidades vendes por semana, más o menos?”','“¿Vendes por delivery o en tiendas?”','“¿Ya tienes logo?”'])+'<p class="small">Escucha más de lo que hablas: cada respuesta dice qué máquina, vaso y tapa recomendar.</p>')}
+  ${card('3 · Concepto','<p class="quote">“Con Fenice no necesitas una fábrica ni producir en masa. Solo necesitas tres cosas: tu mejor receta, nuestro sistema de sellado y tu logo. Tu producto queda sellado, sin derrames, listo para delivery o vitrina, y con la imagen de una marca profesional.”</p>')}
+  ${card('4 · Demostración','<ol><li>Muestra vaso y tapa: “Este es el vaso de 250 ml, el favorito para marquesas y quesillos.”</li><li>Sella frente al cliente: “Mira… listo. 5 segundos.”</li><li>Pásale el vaso: “Dale la vuelta, sacúdelo. No se sale nada.”</li><li>Tapa abre fácil: “Y tu cliente lo abre así de fácil, sin cuchillo ni tijera.”</li><li>Vaso personalizado: “Este podría llevar tu logo, a una o dos caras.”</li></ol>')}
+  ${card('5 · Recomendación y cierre',li(['Postres en capas, gas o fermentadas: “Te recomiendo la Nova Machine, en $900.”','Bebidas en general: “Te va perfecto la Automática 5 Sec, en $719,99. Sella tus bebidas en 5 segundos.”','Confianza: “Ambas tienen calidad italiana, un año de garantía por defecto de fábrica y revisión técnica gratuita. Y la tienes en blanco o negro.”','Cierre: “¿Te tomo los datos para enviarte la cotización con tus vasos personalizados?”']))}
+  ${card('Frases de poder',li(['“Everything’s possible: tu receta ya es buena, ahora hazla ver como una marca.”','“Un vaso sellado vende más: se ve profesional y viaja seguro, sin derrames.”','“Tu logo en cada vaso es publicidad que tu cliente se lleva a la casa.”','“Con el pedido mínimo de 500 vasos ya puedes lanzar tu línea personalizada.”','“En 7 a 10 días hábiles después de aprobar el diseño, tienes tus vasos con tu marca.”','“Estamos en Caracas con servicio técnico, y enviamos a todo el país por MRW, Zoom y Liberty Express.”']))}`)}
+ ${det('Fenice Artisanale · catálogo y speech con degustación',`
+  ${card('Las 3 familias de producto',li(['<b>Bases:</b> el “cuerpo” del helado. Polvos que dan textura, cremosidad y estructura; se mezclan con agua, leche o base blanca. Las Soft-Ice: 2 kg de producto + 4 L de agua.','<b>Variegatos:</b> cremas y salsas para vetear helado y rellenar semifríos, tortas y pasteles. Cookies® Caramel y Lemon Meringue: 80 g por 1 kg de base blanca, o directo como variegato.','<b>Pastas:</b> el “sabor”. Concentradas, se añaden a la base para crear cada gusto.'])+'<p class="small">Misión: impulsar y capacitar a emprendedores y dueños de gelaterías, pizzerías y panaderías. Hay escuela y laboratorio. El catálogo no trae precios: se toman los datos y se pasan a ventas.</p>')}
+  ${card('1 · Enganche con degustación',li(['“¡Hola! ¿Quieres probar un helado con ingredientes italianos? Este es de pistacho 100% puro.”','“Prueba este… es avellana y cacao con trocitos de wafer. Dime si no te recuerda a algo.”','“¿Te gusta el pistacho? Tengo que darte a probar el Baklava Pistachio Cream.”','“¿Dulce o frutal? Escoge y te doy a probar.”','“Este helado está hecho con nuestra base y nuestras pastas. ¿Tú haces helado o postres?”']))}
+  ${card('2 · Preguntas',li(['“¿Tienes heladería, pastelería, panadería o pizzería? ¿O estás empezando?”','“¿Haces helado artesanal de bacha o soft (de máquina de cono)?”','“¿Cuáles son tus sabores más vendidos?”','“¿Tienes clientes que piden opciones con edulcorantes o sin azúcar añadida?”','“¿Qué usas hoy como base? ¿Te da la textura que quieres?”']))}
+  ${card('3 · Presentación','<p class="quote">“En Fenice Artisanale no somos solo proveedores: somos tus aliados. Te traemos materias primas italianas de la más alta calidad para que tu helado y tus postres sean memorables. Y tenemos escuela y laboratorio para acompañarte y capacitarte.”</p>')}
+  ${card('4 · Cierre',li(['“¿Con cuál sabor te gustaría empezar?”','“Te recomiendo arrancar con una base y dos pastas. ¿Cuáles te llevas?”','“¿Te anoto para que nuestro equipo de ventas te envíe precios y disponibilidad?”','“¿Te gustaría conocer nuestra escuela y laboratorio?”']))}
+  ${card('Cómo invitar a probar','<ol><li>Ofrece, no preguntes: “Prueba este” funciona mejor que “¿Quieres probar?”.</li><li>Da a elegir entre dos: “¿Dulce o frutal?”, “¿Pistacho o avellana?”.</li><li>Nombra el sabor mientras lo prueba: “Ese es Cookies® Caramel: caramelo con galleta caramelizada.”</li><li>Pregunta qué sintió: “¿Qué te pareció la textura?”.</li><li>Conecta con su negocio: “Este mismo helado lo puedes hacer tú con nuestra base y esta pasta.”</li></ol>')}
+  ${card('Frases de poder',li(['“Tradición italiana en cada cucharada.”','“No somos proveedores, somos tus aliados.”','“Tu creatividad más nuestros ingredientes: un helado que tus clientes recuerdan.”','“Dosificación sencilla: resultados de gelatería italiana sin complicarte.”','“Latas y cubos de 3 a 6 kg con 18 a 36 meses de vida útil: rinden y se conservan.”','Venta cruzada: “Y cuando tengas tu helado listo, lo puedes vender en vasos sellados con tu logo con Fenice.”']))}`)}
+ <h3>Objeciones</h3>
+ <p class="small">Método: Escucho → Entiendo → Respondo → Pregunto. No interrumpas, valida, responde con un dato del catálogo y termina con una pregunta.</p>
+ <input type="search" id="objq" placeholder="Buscar objeción: cara, azúcar, Caracas…" aria-label="Buscar objeción" value="${S.objq}">
+ <div id="objt"></div>
+ <div class="grid g2">
+  ${card('Técnicas de cierre',li(['<b>Por alternativa:</b> “¿La quieres en blanco o en negro?” / “¿Pistacho o avellana?”','<b>Por resumen:</b> “Entonces: Nova Machine, vasos de 250 ml con tu logo y tapa abre fácil dorada. ¿Lo dejamos así?”','<b>Por siguiente paso:</b> “¿Me das tu número para que el equipo te envíe la cotización hoy mismo?”','<b>Por combo:</b> “Si haces helado, te llevas la base y las pastas de Artisanale, y lo vendes sellado en vasos Fenice con tu marca.”'])+'<p><b>Si no compra hoy:</b> toma nombre, teléfono, tipo de negocio y producto de interés. Dale el Instagram (@FENICEVE o @FENICE.ARTISANALE) y despídete: “Gracias por pasar, te escribimos pronto.”</p>')}
+  ${card('Preguntas frecuentes',li(['<b>¿La máquina es italiana?</b> Calidad italiana, 1 año de garantía por defecto de fábrica.','<b>¿Qué puedo sellar?</b> Bebidas (Toddy, iced coffee, jugos, carbonatadas, fermentadas) y postres (marquesas, quesillo, yogurt, postres en capas).','<b>¿Y esa máquina qué hace?</b> Sella vasos de bebidas y postres para que queden herméticos, sin derrames y con tu logo. Cierra con: “¿Qué producto quieres sellar?”','<b>¿Cómo se conservan los productos Artisanale?</b> Utensilios limpios y secos, cerrar bien el envase, lejos del calor y del sol directo.','<b>¿Qué es la base blanca?</b> La mezcla neutra sobre la que se añaden pastas y bases de sabor (ej.: 40 g de Mascarpone por 1 kg).','<b>¿Y los precios de Artisanale?</b> El catálogo no los trae: toma los datos y pásalos a ventas.']))}
+ </div>`,
+operacion:()=>`
+ <h2>Operación</h2>
+ <h3>Carga eléctrica por stand</h3>
+ <p class="small">Requerimiento del 11 de noviembre, Gerencia Comercial Operativa. Total: 29 puntos (21 de 110 V y 8 de 220 V).</p>
+ <div class="grid g2">
+  <div class="card"><div class="bars">${POWER.map(([n,a,b])=>`<div class="bar-r"><span>${n}</span><div class="bar-t" style="width:${(a+b)/11*100}%"><i style="flex:${a}"></i><i style="flex:${b}"></i></div><b class="n">${a+b}</b></div>`).join('')}</div>
+   <div class="row small"><span class="chip ws">110 V</span><span class="chip cata">220 V</span> puntos por stand</div></div>
+  ${tbl(['Stand','110 V','220 V','Total'],[...POWER.map(([n,a,b])=>[n,a,b,a+b]),{c:'tot',d:['Total',21,8,29]}],['','n','n','n'])}
+ </div>
+ ${Object.entries(EQUIP).map(([n,r])=>det(`${n} · equipos`,tbl(['Equipo','Voltaje','Puntos'],r,['','t','n']))).join('')}
+ <h3>Vitrina Fenice · 29 sabores</h3>
+ <p class="small">Orden según el listado suministrado (Innovación y Desarrollo).</p>
+ <input type="search" id="vq" placeholder="Buscar sabor…" aria-label="Buscar sabor" value="${S.vq}">
+ <div class="flav" id="flav"></div>
+ <h3>Concurso de gelatería</h3>
+ <p class="small">3.ª Competencia de Gelatería Artesanal de Ferihelado. Fenice Artisanale entrega los kits de ganadores.</p>
+ ${tbl(['Lugar','Kit Fenice Artisanale (según las fotos del documento)'],[
+  ['1.º','Gorro de chef MEC3, bandana roja Fenice Artisanale, delantal Fenice Artisanale, gorra y franela “I ♥ Gelato”, espátula y paleta, lanyard Fenice, cupón de 1 gelato de un sabor y tarjetas de presentación.'],
+  ['2.º','Gorro de chef MEC3, bandana roja, gorra “I ♥ Gelato”, espátula y paleta, lanyard, cupón de 1 gelato y tarjetas.'],
+  ['3.º','Gorro de chef MEC3, gorra “I ♥ Gelato”, espátula, lanyard, cupón de 1 gelato y tarjetas.']],['t'])}
+ ${gal([['kit1','Kit primer lugar'],['kit2','Kit segundo lugar'],['kit3','Kit tercer lugar']]).replace('<h4>Material</h4>','')}
+ <p class="small">Otras marcas suman al kit de participantes/jurado: Fior di Latte (cupón de 1 gelato, gorra, tarjeta y Golden Ticket de un año de helado para el ganador) y Frógurt (termo para los tres ganadores, cupón de tina pequeña y llavero).</p>
+ <h3>Recetario de Valesska Pérez · “¡Todos podemos crear!”</h3>
+ <p class="small">Tema “Renacer a través del frío”. Cantidades en gramos.</p>
+ ${REC.map(g=>det(g.g,`<p>${g.d}</p>`+(g.r.length?`<div class="grid g2">${g.r.map(([n,rows,t])=>`<div class="stack"><h4>${n}</h4>${tbl(['Ingrediente','g'],[...rows,{c:'tot',d:['Total',t]}],['','n'])}</div>`).join('')}</div>`:'')+(g.g.startsWith('III')?'<p class="small">* Crema de leche: 918 g por confirmar; la cifra viene parcialmente oculta en la fuente.</p>':''))).join('')}`
+};
+T.control=()=>controlRender();
+const TABS=[['inicio','Inicio'],['agenda','Agenda'],['control','Control del evento'],['marcas','Marcas'],['ventas','Ventas Fenice'],['operacion','Operación']];
+const S={tab:'inicio',day:'all',ext:false,brand:'artisanale',vq:'',objq:'',controlTab:'resumen',taskQ:'',taskStatus:'Todos',taskArea:'Todas',mountStatus:'Todos'};
+
+
+const CONTROL_DATA={"tasks":[{"id":"1","area":"Comercial","task":"Enviar soporte de pago de la reserva 40 % + planilla de retención a asistente.fexven@gmail.com","brand":"Todas","owner":"Laura B.","start":"11/09/2026","due":"15/09/2026","priority":"Alta","status":"Listo","notes":"Verificar si ya fue pagada (fecha estimada 31/08)"},{"id":"2","area":"Comercial","task":"Pago 2da cuota FexVen (US$ 1.455)","brand":"Todas","owner":"Administración","start":"25/09/2026","due":"30/09/2026","priority":"Alta","status":"Listo","notes":"Tasa BCV del día"},{"id":"3","area":"Comercial","task":"Pago 3ra cuota FexVen (US$ 1.455)","brand":"Todas","owner":"Administración","start":"19/10/2026","due":"23/10/2026","priority":"Alta","status":"Listo","notes":""},{"id":"4","area":"Comercial","task":"Pago 4ta cuota FexVen (US$ 1.455)","brand":"Todas","owner":"Administración","start":"10/11/2026","due":"15/11/2026","priority":"Alta","status":"Pendiente","notes":""},{"id":"5","area":"Comercial","task":"Confirmar con FexVen: horario oficial de feria, ventana de montaje/desmontaje, acceso vehicular y descarga","brand":"Todas","owner":"Laura B.","start":"11/09/2026","due":"18/09/2026","priority":"Alta","status":"Listo","notes":"Base del cronograma operativo"},{"id":"6","area":"Comercial","task":"Solicitar plano de ubicación de stands 03, H, I, J y área feria de comida","brand":"Todas","owner":"Laura B.","start":"11/09/2026","due":"18/09/2026","priority":"Alta","status":"Listo","notes":""},{"id":"7","area":"Comercial","task":"Definir intercambio de producto Uno Más para staff FeriHelado (cantidades, entrega diaria)","brand":"Uno Más","owner":"Laura B.","start":"15/09/2026","due":"02/10/2026","priority":"Media","status":"Listo","notes":"Nota en la solicitud de reserva"},{"id":"8","area":"Comercial","task":"Confirmar cantidad de credenciales de expositor y pases de cortesía por metros contratados","brand":"Todas","owner":"Laura B.","start":"15/09/2026","due":"30/09/2026","priority":"Media","status":"Pendiente","notes":""},{"id":"9","area":"Comercial","task":"Enviar listado nominal del personal para credenciales (nombre, C.I., marca)","brand":"Todas","owner":"BEISY","start":"26/10/2026","due":"06/11/2026","priority":"Alta","status":"Pendiente","notes":""},{"id":"10","area":"Comercial","task":"Permiso sanitario / manipulación de alimentos vigente para todo el personal del stand","brand":"Todas","owner":"BEISY","start":"01/10/2026","due":"30/10/2026","priority":"Alta","status":"Pendiente","notes":"Verificar vigencia de certificados"},{"id":"11","area":"Comercial","task":"Seguro / póliza de equipos en feria (vitrinas, congeladores, POS)","brand":"Todas","owner":"Administración","start":"05/10/2026","due":"30/10/2026","priority":"Media","status":"Pendiente","notes":""},{"id":"12","area":"Stand y diseño","task":"Definir distribución final de marcas por stand (03, H, I, J, feria de comida)","brand":"Todas","owner":"Laura B.","start":"14/09/2026","due":"25/09/2026","priority":"Alta","status":"Listo","notes":"Propuesta inicial en hoja Resumen"},{"id":"13","area":"Stand y diseño","task":"Brief de diseño de stand principal 30 m² (multimarca)","brand":"Fenice Artisanale","owner":"Marketing","start":"21/09/2026","due":"02/10/2026","priority":"Alta","status":"Listo","notes":"Respetar manuales de identidad de cada marca"},{"id":"14","area":"Stand y diseño","task":"Diseño y arte de stands satélite H, I, J","brand":"Mykonos","owner":"Marketing","start":"28/09/2026","due":"09/10/2026","priority":"Alta","status":"Listo","notes":"Mykonos: meandro, Myko; Frógurt: azul/beige"},{"id":"15","area":"Stand y diseño","task":"Aprobación de artes por dirección","brand":"Todas","owner":"Laura B.","start":"09/10/2026","due":"14/10/2026","priority":"Alta","status":"Listo","notes":""},{"id":"16","area":"Stand y diseño","task":"Cotización y contratación de productor de stand / gráfica impresa","brand":"Todas","owner":"Compras BEISY","start":"05/10/2026","due":"20/10/2026","priority":"Alta","status":"Listo","notes":"Mínimo 3 cotizaciones"},{"id":"17","area":"Stand y diseño","task":"Producción de gráfica: backings, banderolas, cenefas, vinilos de vitrina, menús de precios","brand":"Todas","owner":"Laura B.","start":"20/10/2026","due":"10/11/2026","priority":"Alta","status":"Listo","notes":""},{"id":"18","area":"Stand y diseño","task":"Confirmar medidas de panelería, altura y puntos de electricidad 110V con FexVen","brand":"Todas","owner":"Logística BEISY","start":"21/09/2026","due":"02/10/2026","priority":"Alta","status":"Listo","notes":"Carga eléctrica de congeladores + vitrinas"},{"id":"19","area":"Stand y diseño","task":"Solicitar puntos eléctricos adicionales / potencia extra si aplica","brand":"Todas","owner":"Logística BEISY","start":"02/10/2026","due":"16/10/2026","priority":"Alta","status":"Pendiente","notes":"Costo adicional con FexVen"},{"id":"20","area":"Stand y diseño","task":"Mobiliario: mesas, taburetes, mostrador, exhibidor de toppings","brand":"Todas","owner":"BEISY","start":"12/10/2026","due":"06/11/2026","priority":"Media","status":"Listo","notes":"ENVIAR DOS MESAS DE MYKONOS PARA STRAND FENICE"},{"id":"21","area":"Producto y cadena de frío","task":"Definir carta de sabores/productos por marca para la feria (venta + degustación)","brand":"Todas","owner":"Laura B.","start":"21/09/2026","due":"09/10/2026","priority":"Alta","status":"Listo","notes":""},{"id":"22","area":"Producto y cadena de frío","task":"Estimar consumo por día (venta + degustación) y plan de producción","brand":"Todas","owner":"BEISY","start":"05/10/2026","due":"23/10/2026","priority":"Alta","status":"Listo","notes":"Base: afluencia edición 2025"},{"id":"23","area":"Producto y cadena de frío","task":"Definir precios de venta al público y política de degustación","brand":"Todas","owner":"Laura B.","start":"12/10/2026","due":"23/10/2026","priority":"Alta","status":"Listo","notes":"PRECIO EVENTOS"},{"id":"24","area":"Producto y cadena de frío","task":"Inventario y prueba de congeladores/vitrinas a llevar (funcionamiento, limpieza)","brand":"Todas","owner":"Infraestructura","start":"26/10/2026","due":"13/11/2026","priority":"Alta","status":"Listo","notes":"Encender 24 h de prueba"},{"id":"25","area":"Producto y cadena de frío","task":"Plan de cadena de frío: transporte refrigerado, hielo seco, termómetros, registro de temperatura","brand":"Todas","owner":"Producción / Logística","start":"19/10/2026","due":"06/11/2026","priority":"Alta","status":"Pendiente","notes":"Registro cada 2 h durante la feria"},{"id":"26","area":"Producto y cadena de frío","task":"Cronograma de producción: lotes 16–18 nov y reposición diaria 20–22","brand":"Todas","owner":"Producción","start":"02/11/2026","due":"13/11/2026","priority":"Alta","status":"En curso","notes":""},{"id":"27","area":"Producto y cadena de frío","task":"Definir participación en Copa Heladería Artesanal (inscripción, receta, competidor)","brand":"Fenice Artisanale","owner":"Laura B. PAULA","start":"21/09/2026","due":"09/10/2026","priority":"Media","status":"Listo","notes":"Consultar bases con FexVen"},{"id":"28","area":"Compras","task":"Consolidar lista de compras (hoja Compras) y aprobar presupuesto","brand":"Todas","owner":"Laura B.","start":"21/09/2026","due":"02/10/2026","priority":"Alta","status":"Listo","notes":""},{"id":"29","area":"Compras","task":"Compra de desechables con marca (vasos, cucharillas, servilletas, conos)","brand":"Todas","owner":"CP","start":"05/10/2026","due":"30/10/2026","priority":"Alta","status":"Listo","notes":"Ver hoja Compras"},{"id":"31","area":"Compras","task":"Compra de insumos de limpieza y kit de emergencia","brand":"Todas","owner":"BEISY","start":"02/11/2026","due":"13/11/2026","priority":"Media","status":"Pendiente","notes":""},{"id":"32","area":"Personal","task":"Definir equipo de feria: coordinador, líderes por marca, cajeros, degustadores, reposición","brand":"Todas","owner":"Laura B. / Adel D.","start":"05/10/2026","due":"16/10/2026","priority":"Alta","status":"Listo","notes":"Ver hoja Turnos"},{"id":"33","area":"Personal","task":"Confirmar disponibilidad y turnos de coordinadores de zona y personal de tienda","brand":"Todas","owner":"Beisy","start":"16/10/2026","due":"30/10/2026","priority":"Alta","status":"Listo","notes":"No descubrir tiendas"},{"id":"34","area":"Personal","task":"Capacitación: pitch de marca, degustación, POS, manejo de temperatura, protocolo de servicio","brand":"Todas","owner":"Laura B.Adel","start":"09/11/2026","due":"17/11/2026","priority":"Alta","status":"Pendiente","notes":"Sesión de 2 h por marca"},{"id":"35","area":"Personal","task":"Definir viáticos, alimentación y transporte del equipo por día","brand":"Todas","owner":"Beisy","start":"26/10/2026","due":"06/11/2026","priority":"Media","status":"Pendiente","notes":""},{"id":"36","area":"Personal","task":"Personaje Myko: confirmar traje, persona que lo porta y horarios de aparición","brand":"Mykonos","owner":"Marketing","start":"19/10/2026","due":"06/11/2026","priority":"Media","status":"Pendiente","notes":""},{"id":"37","area":"Logística","task":"Transporte refrigerado para montaje y reposición diaria","brand":"Todas","owner":"Logística","start":"19/10/2026","due":"06/11/2026","priority":"Alta","status":"Pendiente","notes":""},{"id":"38","area":"Logística","task":"Plan de carga: listado de equipos y materiales por vehículo","brand":"Todas","owner":"Logística","start":"09/11/2026","due":"16/11/2026","priority":"Alta","status":"Pendiente","notes":"Ver hoja Montaje-Desmontaje"},{"id":"39","area":"Logística","task":"POS / punto de venta: equipos, conexión, cuentas por marca, pago móvil, efectivo, divisas","brand":"Todas","owner":"Administración","start":"26/10/2026","due":"13/11/2026","priority":"Alta","status":"Listo","notes":"Probar con 1 semana de anticipación"},{"id":"40","area":"Logística","task":"Almacenamiento nocturno de producto: confirmar si Espacios Caracas permite dejar congeladores encendidos","brand":"Todas","owner":"Logística","start":"05/10/2026","due":"16/10/2026","priority":"Alta","status":"Listo","notes":"Si no, plan de retiro diario"},{"id":"41","area":"Logística","task":"Agua, hielo y manejo de desechos durante la feria","brand":"Todas","owner":"Logística","start":"09/11/2026","due":"16/11/2026","priority":"Media","status":"Listo","notes":"LLEVAR DE LAS DONACIONES"},{"id":"42","area":"Marketing y RRSS","task":"Enviar logos y material a FexVen para mención en RRSS de FeriHelado","brand":"Todas","owner":"Marketing","start":"15/09/2026","due":"30/09/2026","priority":"Media","status":"Listo","notes":""},{"id":"43","area":"Marketing y RRSS","task":"Plan de contenidos pre-feria (anuncio, countdown, sabores) y durante (stories diarios)","brand":"Todas","owner":"Marketing","start":"12/10/2026","due":"13/11/2026","priority":"Media","status":"Listo","notes":""},{"id":"44","area":"Marketing y RRSS","task":"Promoción de feria: descuento por seguir en IG, combo multimarca, cupón para tiendas","brand":"Todas","owner":"Marketing","start":"19/10/2026","due":"06/11/2026","priority":"Media","status":"Listo","notes":""},{"id":"45","area":"Marketing y RRSS","task":"Fotógrafo / video para cobertura de los 3 días","brand":"Todas","owner":"Marketing","start":"26/10/2026","due":"13/11/2026","priority":"Baja","status":"Listo","notes":""},{"id":"46","area":"Programa de feria","task":"Solicitar agenda de conferencias, Master Class y catas; definir asistentes por marca","brand":"Todas","owner":"Laura B.","start":"12/10/2026","due":"06/11/2026","priority":"Media","status":"Listo","notes":"Acceso preferencial para expositores"},{"id":"47","area":"Programa de feria","task":"Evaluar Master Class o demostración propia en Zona de Master Class","brand":"Fenice Artisanale","owner":"Laura B.","start":"05/10/2026","due":"23/10/2026","priority":"Baja","status":"Listo","notes":"PAULA LA HARA"},{"id":"48","area":"Programa de feria","task":"Reunión de cierre: resultados de venta, contactos B2B, aprendizajes","brand":"Todas","owner":"Laura B.","start":"23/11/2026","due":"27/11/2026","priority":"Media","status":"Pendiente","notes":"Base para edición 2027"}],"mount":[{"id":"1","phase":"Pre-montaje","day":"Lun 16/11","start":"09:00","end":"12:00","task":"Reunión general del equipo: roles, turnos, cronograma, protocolos","owner":"Laura B.","resources":"Fenice- Los Simbolos","status":"Pendiente","notes":""},{"id":"2","phase":"Pre-montaje","day":"Mar 17/11","start":"09:00","end":"17:00","task":"Prueba de congeladores y vitrinas (24 h encendidos), verificación de temperatura −18 °C","owner":"Mantenimiento","resources":"Termómetros","status":"Pendiente","notes":""},{"id":"3","phase":"Pre-montaje","day":"Mié 18/11","start":"09:00","end":"17:00","task":"Embalaje y rotulado de gráfica, desechables, uniformes, POS y kits por stand","owner":"Logística","resources":"Cajas rotuladas por stand (03/H/I/J/FC)","status":"Pendiente","notes":""},{"id":"4","phase":"Pre-montaje","day":"Mié 18/11","start":"14:00","end":"18:00","task":"Preparación de producto: lotes de degustación y venta día 1, rotulado con fecha","owner":"Producción","resources":"Cámara de frío centro de producción","status":"Pendiente","notes":""},{"id":"5","phase":"Pre-montaje","day":"Mié 18/11","start":"17:00","end":"18:00","task":"Checklist de carga: verificación de cada vehículo contra plan de carga","owner":"Logística","resources":"Plan de carga firmado","status":"Pendiente","notes":""},{"id":"6","phase":"Montaje","day":"Mar 17/11","start":"08:00","end":"09:00","task":"Llegada a Espacios Caracas · registro y credenciales · ubicación de stands","owner":"Coordinador general","resources":"Credenciales, plano","status":"Pendiente","notes":""},{"id":"7","phase":"Montaje","day":"Mar 17/11","start":"09:00","end":"10:30","task":"Descarga de equipos pesados (congeladores, vitrinas) y conexión a puntos 110V","owner":"Logística + 4 personas","resources":"Carretillas, extensiones","status":"Pendiente","notes":""},{"id":"8","phase":"Montaje","day":"Mar 17/11","start":"10:30","end":"11:00","task":"Encendido de equipos de frío · inicio de registro de temperatura","owner":"Mantenimiento","resources":"Planilla de temperatura","status":"Pendiente","notes":""},{"id":"9","phase":"Montaje","day":"Mar 17/11","start":"10:30","end":"13:00","task":"Instalación de gráfica: backings, vinilos, cenefas, roll-ups (stand 03 primero)","owner":"Productor de stand + Marketing","resources":"Gráfica impresa, herramientas","status":"Pendiente","notes":""},{"id":"10","phase":"Montaje","day":"Mar 17/11","start":"13:00","end":"14:00","task":"Almuerzo del equipo de montaje","owner":"Coordinador general","resources":"","status":"Pendiente","notes":""},{"id":"11","phase":"Montaje","day":"Mar 17/11","start":"14:00","end":"16:00","task":"Instalación de gráfica stands H, I, J y área feria de comida · mobiliario","owner":"Productor de stand + Marketing","resources":"","status":"Pendiente","notes":""},{"id":"12","phase":"Montaje","day":"Mar 17/11","start":"16:00","end":"17:00","task":"Instalación y prueba de POS, pago móvil, conectividad, impresora","owner":"Administración","resources":"Datáfonos, teléfonos","status":"Pendiente","notes":""},{"id":"13","phase":"Montaje","day":"Mar 17/11","start":"17:00","end":"18:00","task":"Distribución de desechables, menús de precios, uniformes y kits en cada stand","owner":"Logística","resources":"Cajas rotuladas","status":"Pendiente","notes":""},{"id":"14","phase":"Montaje","day":"Mar 17/11","start":"18:00","end":"18:30","task":"Traslado de producto (si el recinto permite almacenar en frío durante la noche); si no, se lleva el 20/11 a las 08:00","owner":"Producción / Logística","resources":"Transporte refrigerado, hielo seco","status":"Pendiente","notes":""},{"id":"15","phase":"Montaje","day":"Mar 17/11","start":"18:30","end":"19:00","task":"Recorrido final: checklist de stand (limpieza, gráfica, frío, electricidad, seguridad) · fotos de referencia","owner":"Coordinador general + líderes de marca","resources":"Checklist firmado","status":"Pendiente","notes":""},{"id":"16","phase":"Reposición diaria","day":"Vie 20 – Dom 22","start":"07:30","end":"08:30","task":"Salida del centro de producción con producto del día · registro de temperatura al despacho","owner":"Producción","resources":"Transporte refrigerado","status":"Pendiente","notes":""},{"id":"17","phase":"Reposición diaria","day":"Vie 20 – Dom 22","start":"20:30","end":"21:00","task":"Retiro de producto sobrante / inventario de cierre · reporte al centro de producción","owner":"Líderes de marca","resources":"Planilla de inventario","status":"Pendiente","notes":""},{"id":"18","phase":"Desmontaje","day":"Dom 22/11","start":"20:00","end":"20:30","task":"Cierre de ventas, cuadre de caja por marca, retiro de POS","owner":"Administración + cajeros","resources":"Planilla de cierre","status":"Pendiente","notes":""},{"id":"19","phase":"Desmontaje","day":"Dom 22/11","start":"20:30","end":"21:00","task":"Retiro y embalaje de producto restante en cavas con hielo seco","owner":"Producción","resources":"Cavas","status":"Pendiente","notes":""},{"id":"20","phase":"Desmontaje","day":"Dom 22/11","start":"21:00","end":"21:30","task":"Retiro de gráfica, roll-ups, mobiliario y desechables · limpieza del espacio","owner":"Todo el equipo","resources":"","status":"Pendiente","notes":""},{"id":"21","phase":"Desmontaje","day":"Dom 22/11","start":"21:30","end":"22:00","task":"Descongelación rápida, limpieza y carga de congeladores y vitrinas","owner":"Logística + 4 personas","resources":"Carretillas","status":"Pendiente","notes":""},{"id":"22","phase":"Desmontaje","day":"Dom 22/11","start":"22:00","end":"22:30","task":"Checklist de salida: nada olvidado, daños al espacio, entrega del stand a FexVen","owner":"Coordinador general","resources":"Checklist de salida","status":"Pendiente","notes":""},{"id":"23","phase":"Post-evento","day":"Lun 23/11","start":"09:00","end":"12:00","task":"Recepción y verificación de equipos en centro de producción · lavado","owner":"Mantenimiento","resources":"","status":"Pendiente","notes":""},{"id":"24","phase":"Post-evento","day":"Mar 24/11","start":"10:00","end":"12:00","task":"Cierre administrativo: ventas por marca, costos, inventario, contactos B2B","owner":"Laura B.","resources":"Reporte de cierre","status":"Pendiente","notes":""}],"daily":[{"start":"07:30","end":"08:00","task":"Salida de producto del centro de producción (reposición diaria)","owner":"Producción","verify":"Temp. despacho registrada"},{"start":"08:00","end":"08:15","task":"Llegada Turno A · registro con credencial · uniforme completo","owner":"Todo Turno A","verify":"Lista de asistencia"},{"start":"08:15","end":"08:30","task":"Briefing del día: metas de venta, sabores, promociones, puntos de atención del día anterior","owner":"Coordinador general","verify":""},{"start":"08:30","end":"09:00","task":"Recepción de producto · verificación de temperatura · carga de vitrinas por marca","owner":"Líderes de marca","verify":"Planilla de temperatura"},{"start":"09:00","end":"09:45","task":"Mise en place: toppings, desechables, menús, limpieza de vitrinas, encendido de POS, fondo de caja","owner":"Todo Turno A","verify":"Checklist de apertura"},{"start":"09:45","end":"10:00","task":"Recorrido de apertura del coordinador por los 5 espacios · fotos para APP","owner":"Coordinador general","verify":"Foto de apertura"},{"start":"10:00","end":"10:00","task":"APERTURA DE FERIA","owner":"Todos","verify":""},{"start":"10:00","end":"12:00","task":"Atención, venta y degustación · story de apertura en IG de cada marca","owner":"Todos","verify":""},{"start":"12:00","end":"12:00","task":"Control de temperatura #1 · reposición de desechables","owner":"Líderes de marca","verify":"Planilla"},{"start":"12:00","end":"13:00","task":"Break Turno A (escalonado, 30 min por persona, nunca 2 de la misma marca a la vez)","owner":"Coordinador general","verify":""},{"start":"13:00","end":"14:00","task":"Hora de mayor afluencia: todos en posición · personaje Myko en pasillo 13:00–13:45","owner":"Todos","verify":""},{"start":"14:00","end":"14:15","task":"Llegada Turno B · briefing corto · relevo por stand","owner":"Coordinador general","verify":"Lista de asistencia"},{"start":"14:00","end":"15:00","task":"Solape A/B: refuerzo en horario pico · corte de caja parcial por marca","owner":"Cajeros","verify":"Corte parcial"},{"start":"14:00","end":"14:00","task":"Control de temperatura #2","owner":"Líderes de marca","verify":"Planilla"},{"start":"15:00","end":"15:00","task":"Salida Turno A (entrega de puesto: inventario, caja, pendientes)","owner":"Turno A","verify":"Acta de relevo"},{"start":"16:00","end":"16:00","task":"Control de temperatura #3 · reposición de producto desde cava de respaldo","owner":"Líderes de marca","verify":"Planilla"},{"start":"16:00","end":"17:00","task":"Break Turno B (escalonado, 30 min por persona)","owner":"Coordinador general","verify":""},{"start":"17:00","end":"19:00","task":"Segundo pico (tarde-noche) · personaje Myko 17:30–18:15 · promoción de cierre del día","owner":"Todos","verify":""},{"start":"18:00","end":"18:00","task":"Control de temperatura #4","owner":"Líderes de marca","verify":"Planilla"},{"start":"19:00","end":"20:00","task":"Última hora: activar descuento de cierre en producto de degustación abierto","owner":"Líderes de marca","verify":""},{"start":"20:00","end":"20:00","task":"CIERRE DE FERIA","owner":"Todos","verify":""},{"start":"20:00","end":"20:30","task":"Cuadre de caja por marca · reporte de ventas al coordinador · conteo de inventario","owner":"Cajeros + líderes","verify":"Planilla de cierre"},{"start":"20:30","end":"21:00","task":"Limpieza profunda de vitrinas y stand · cobertura de producto · retiro de sobrantes al transporte · basura","owner":"Todo Turno B","verify":"Checklist de cierre"},{"start":"21:00","end":"21:00","task":"Salida Turno B · coordinador envía reporte del día (ventas, incidencias, necesidades para mañana)","owner":"Coordinador general","verify":"Reporte diario"}],"shifts":[{"day":"Vie 20/11","shift":"Completo","name":"ADEL","role":"Coordinador general","space":"Transversal","brand":"Todas","start":"10 AM","end":"15:00","breaks":"Ejemplo: puede extender a día completo"},{"day":"Vie 20/11","shift":"Completo","name":"BEISY ROYERO","role":"Coordinador general","space":"Transversal","brand":"Todas","start":"10 AM","end":"15:00","breaks":"Break 12:00–12:30"},{"day":"Vie 20/11","shift":"Completo","name":"SCARLETT PONCHO","role":"Líder de marca","space":"Stand H","brand":"Mykonos","start":"10 AM","end":"15:00","breaks":"Break 12:30–13:00"},{"day":"Vie 20/11","shift":"Completo","name":"ISAAC IZARRA","role":"Atención y degustación","space":"Stand H","brand":"Mykonos","start":"11 AM","end":"21:00","breaks":"Break 16:00–16:30"},{"day":"Vie 20/11","shift":"Completo","name":"TIFFANY RODRIGUEZ","role":"Cajero","space":"Stand H","brand":"Mykonos","start":"11 AM","end":"21:00","breaks":"Apariciones 17:30 y 13:00 (día siguiente turno A)"},{"day":"Vie 20/11","shift":"Completo","name":"MARIA FERNANDEZ","role":"Reposición / apoyo","space":"Stand H","brand":"Mykonos","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"ANGY PEINADO","role":"Líder de marca","space":"Stand J","brand":"Frógurt","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"RUBEN PANQUEVA","role":"Atención y degustación","space":"Stand J","brand":"Frógurt","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"DARIANA DURAN","role":"Cajero","space":"Stand J","brand":"Frógurt","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"ARLIESCA COLINA","role":"Reposición / apoyo","space":"Stand J","brand":"Frógurt","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"ZUANYIN MORENO","role":"Líder de marca","space":"Feria de comida","brand":"Uno Más","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"MICHELLE TEHERAN","role":"Cajero","space":"Feria de comida","brand":"Uno Más","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"YEIKER CASTILLO","role":"Reposición / apoyo","space":"Feria de comida","brand":"Uno Más","start":"11 AM","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"GERARADO HERNANDEZ","role":"Líder de marca","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"DANIELA DE CASTRO","role":"Cajero","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"JOSE TELLO","role":"Atención y degustación","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"ADEL","role":"Coordinador general","space":"Transversal","brand":"Todas","start":"","end":"","breaks":""},{"day":"Vie 20/11","shift":"Completo","name":"BEISY ROYERO","role":"Coordinador general","space":"Transversal","brand":"Todas","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"SCARLETT PONCHO","role":"Líder de marca","space":"Stand H","brand":"Mykonos","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"ISAAC IZARRA","role":"Atención y degustación","space":"Stand H","brand":"Mykonos","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"TIFFANY RODRIGUEZ","role":"Cajero","space":"Stand H","brand":"Mykonos","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"MARIA FERNANDEZ","role":"Reposición / apoyo","space":"Stand H","brand":"Mykonos","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"ANGY PEINADO","role":"Líder de marca","space":"Stand J","brand":"Frógurt","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"RUBEN PANQUEVA","role":"Atención y degustación","space":"Stand J","brand":"Frógurt","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"DARIANA DURAN","role":"Cajero","space":"Stand J","brand":"Frógurt","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"ARLIESCA COLINA","role":"Reposición / apoyo","space":"Stand J","brand":"Frógurt","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"ZUANYIN MORENO","role":"Líder de marca","space":"Feria de comida","brand":"Uno Más","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"MICHELLE TEHERAN","role":"Cajero","space":"Feria de comida","brand":"Uno Más","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"YEIKER CASTILLO","role":"Reposición / apoyo","space":"Feria de comida","brand":"Uno Más","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"GERARADO HERNANDEZ","role":"Líder de marca","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"DANIELA DE CASTRO","role":"Cajero","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""},{"day":"Sáb 21/11","shift":"Completo","name":"JOSE TELLO","role":"Atención y degustación","space":"Stand I","brand":"Fior di Latte","start":"","end":"","breaks":""}],"contacts":[{"name":"FexVen – Roberto Cornejo","role":"Ejecutivo de ventas","notes":"Organizador"},{"name":"FexVen – Asistente","role":"Soportes de pago","notes":"Enviar soporte + retención"},{"name":"Laura Bermúdez","role":"Gerencia Comercial Operativa","notes":"Coordinación general del evento"},{"name":"Adel Darbouk","role":"Coordinador Comercial","notes":"Personal y turnos"},{"name":"Coordinador general de feria - Beisy Royero","role":"Coordinador de Eventos","notes":""},{"name":"Líder Fenice Artisanale / Fior di Latte","role":"Paula Herrera","notes":""},{"name":"Líder Mykonos","role":"Scarleth Poncho","notes":""},{"name":"Líder Frógurt","role":"Zuanyin Moreno","notes":""},{"name":"Líder Uno Más","role":"Zuanyin Moreno","notes":""},{"name":"Transporte refrigerado","role":"centro de producción foton","notes":""},{"name":"Productor de stand","role":"impresion digital","notes":""},{"name":"Emergencias Espacios Caracas / seguridad","role":"Yormar jefe de seguridad","notes":""}],"areas":[{"area":"Comercial","tasks":11,"done":6,"progress":55},{"area":"Compras","tasks":3,"done":2,"progress":67},{"area":"Logística","tasks":5,"done":3,"progress":60},{"area":"Marketing y RRSS","tasks":4,"done":4,"progress":100},{"area":"Personal","tasks":5,"done":2,"progress":40},{"area":"Producto y cadena de frío","tasks":7,"done":5,"progress":71},{"area":"Programa de feria","tasks":3,"done":2,"progress":67},{"area":"Stand y diseño","tasks":9,"done":8,"progress":89}]};
+
+const CONTROL_KEY='vertice-ferihelado-control-v1';
+function savedControl(){
+ try{return JSON.parse(localStorage.getItem(CONTROL_KEY)||'{}')}catch(e){return {}}
+}
+function taskStatus(t){
+ const saved=savedControl();return saved[t.id]||t.status;
+}
+function setTaskStatus(id,status){
+ const saved=savedControl();saved[id]=status;localStorage.setItem(CONTROL_KEY,JSON.stringify(saved));
+}
+function stateClass(s){return s==='Listo'?'done':s==='En curso'?'progress':s==='Retrasado'?'delayed':'pending'}
+function controlOverview(){
+ const ts=CONTROL_DATA.tasks.map(t=>({...t,status:taskStatus(t)}));
+ const done=ts.filter(t=>t.status==='Listo').length, pending=ts.filter(t=>t.status==='Pendiente').length, progress=ts.filter(t=>t.status==='En curso').length, late=ts.filter(t=>t.status==='Retrasado').length;
+ const pct=Math.round(done/Math.max(1,ts.length)*100);
+ return `
+ <div class="control-hero"><p class="eyebrow">Grupo Vértice · Ferihelado 2026</p><h2>Control operativo</h2><p>Seguimiento de tareas, montaje, turnos y ejecución diaria desde un solo lugar.</p>
+ <div class="control-kpis">
+  <div class="kpi"><b>${ts.length}</b><span>Tareas registradas</span></div>
+  <div class="kpi"><b>${done}</b><span>Listas</span></div>
+  <div class="kpi"><b>${pending}</b><span>Pendientes</span></div>
+  <div class="kpi"><b>${progress+late}</b><span>En curso / retrasadas</span></div>
+ </div>
+ <div><div class="row" style="justify-content:space-between"><span class="small" style="color:#F7F7F2">Avance global de tareas</span><b>${pct}%</b></div><div class="progress-track"><i style="width:${pct}%"></i></div></div></div>
+ <div class="notice"><b>Horario y montaje confirmados por coordinación:</b> la feria inicia a las 10:00 a. m. y el montaje se realizará el martes 17/11. Se actualizó el cronograma de montaje con esta fecha.</div>
+ <div class="grid g2">
+  ${card('Avance por área',CONTROL_DATA.areas.filter(a=>a.area!=='Total').map(a=>`<div class="stack"><div class="row" style="justify-content:space-between"><b>${a.area}</b><span class="small">${a.done}/${a.tasks} · ${a.progress}%</span></div><div class="progress-track"><i style="width:${a.progress}%"></i></div></div>`).join(''))}
+  ${card('Próximos hitos',`<div class="stack">${CONTROL_DATA.mount.slice(0,6).map(m=>`<div class="contact-row"><div><b>${m.task}</b><div class="small">${m.day} · ${m.owner}</div></div><span class="state ${stateClass(m.status)}">${m.status}</span></div>`).join('')}</div>`)}
+ </div>
+ <div class="row"><button class="btn-quiet" data-ctab="tareas">Abrir control de tareas →</button><button class="btn-quiet" data-ctab="montaje">Ver montaje →</button><button class="btn-quiet" data-ctab="turnos">Ver turnos →</button></div>`;
+}
+function controlTasks(){
+ const q=S.taskQ.toLowerCase();
+ const ts=CONTROL_DATA.tasks.map(t=>({...t,status:taskStatus(t)})).filter(t=>(S.taskStatus==='Todos'||t.status===S.taskStatus)&&(S.taskArea==='Todas'||t.area===S.taskArea)&&(!q||[t.task,t.area,t.brand,t.owner,t.notes].join(' ').toLowerCase().includes(q)));
+ const areas=[...new Set(CONTROL_DATA.tasks.map(t=>t.area))].sort();
+ return `<div class="control-tools"><input id="taskq" type="search" placeholder="Buscar tarea, responsable o marca…" value="${S.taskQ}"><select id="taskarea"><option>Todas</option>${areas.map(a=>`<option ${S.taskArea===a?'selected':''}>${a}</option>`).join('')}</select><select id="taskstatus">${['Todos','Pendiente','En curso','Listo','Retrasado','Cancelado'].map(s=>`<option ${S.taskStatus===s?'selected':''}>${s}</option>`).join('')}</select></div>
+ <p class="small">${ts.length} de ${CONTROL_DATA.tasks.length} tareas · Cambia el estado desde cada tarjeta. Los cambios se guardan en este navegador.</p>
+ <div class="task-list">${ts.map(t=>`<article class="task-row"><div><h4>${t.id}. ${t.task}</h4><div class="task-meta"><span>${t.area}</span><span>· ${t.brand}</span><span>· Responsable: ${t.owner}</span><span>· Límite: ${t.due||'Sin fecha'}</span><span>· Prioridad: ${t.priority}</span></div>${t.notes?`<p class="small" style="margin-top:6px">${t.notes}</p>`:''}</div><div class="task-side"><span class="state ${stateClass(t.status)}">${t.status}</span><select class="status-select" data-task-status="${t.id}" aria-label="Estado de tarea ${t.id}">${['Pendiente','En curso','Listo','Retrasado','Cancelado'].map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`).join('')}</select></div></article>`).join('')||'<p class="small">No hay tareas que coincidan con estos filtros.</p>'}</div>`;
+}
+function controlMount(){
+ const rows=CONTROL_DATA.mount.filter(m=>S.mountStatus==='Todos'||m.status===S.mountStatus);
+ const phases=[...new Set(CONTROL_DATA.mount.map(m=>m.phase))];
+ return `<div class="control-tools"><select id="mountstatus"><option>Todos</option>${['Pendiente','En curso','Listo','Retrasado'].map(s=>`<option ${S.mountStatus===s?'selected':''}>${s}</option>`).join('')}</select><span class="small">${rows.length} actividades de montaje, desmontaje y pre/post evento</span></div>
+ ${phases.map(ph=>`<h3>${ph}</h3><div class="timeline">${rows.filter(m=>m.phase===ph).map(m=>`<div class="timeline-row"><div class="timeline-time">${m.day}<br>${m.start}–${m.end}</div><div><p>${m.task}</p><div class="small">${m.owner}${m.resources?' · '+m.resources:''}</div><div class="row" style="margin-top:6px"><span class="state ${stateClass(m.status)}">${m.status}</span>${m.notes?`<span class="small">${m.notes}</span>`:''}</div></div></div>`).join('')||'<p class="small">Sin actividades para este filtro.</p>'}</div>`).join('')}`;
+}
+function controlDaily(){
+ return `<p class="lead">Rutina diaria propuesta para viernes 20, sábado 21 y domingo 22. La feria inicia a las 10:00 a. m. de viernes a domingo. Los cierres se mantienen según el cronograma de cada día.</p><div class="timeline">${CONTROL_DATA.daily.map(d=>`<div class="timeline-row"><div class="timeline-time">${d.start}${d.end&&d.end!==d.start?'–'+d.end:''}</div><div><p>${d.task}</p><div class="small">${d.owner}${d.verify?' · Verificación: '+d.verify:''}</div></div></div>`).join('')}</div><h3>Variaciones por día</h3><div class="grid g3">${card('Viernes 20','<p>Día 1: Turno A llega 07:30 para primer montaje de producto. Verificar que todo lo probado el jueves funciona. Registrar afluencia por hora para ajustar sábado.</p>')}${card('Sábado 21','<p>Día de mayor afluencia esperada: reforzar con 1 persona extra en stand 03 y en feria de comida entre 13:00 y 19:00. Producción de reposición mayor.</p>')}${card('Domingo 22','<p>Reducir producción de reposición al 70 % del sábado. Turno B inicia desmontaje a las 20:00 según hoja Montaje-Desmontaje. Todo el equipo permanece hasta 22:30.</p>')}</div>`;
+}
+function controlShifts(){
+ const days=['Vie 20/11','Sáb 21/11','Dom 22/11'];
+ return `<div class="notice">Se muestran las asignaciones que aparecen en el Excel. Los campos de horario que no tienen dato se conservan como “Por definir”. El domingo queda “Por definir” porque no hay asignaciones nominales cargadas.</div>${days.map(day=>{
+ const rows=CONTROL_DATA.shifts.filter(x=>x.day===day);
+ if(day==='Dom 22/11') return `<h3>${day}</h3><div class="card"><b>Turnos del domingo</b><p class="small">Por definir</p></div>`;
+ return `<h3>${day}</h3>${tbl(['Nombre','Rol','Espacio','Marca','Entrada','Salida','Break / observación'],rows.map(x=>[x.name,x.role,x.space,x.brand,x.start||'Por definir',x.end||'Por definir',x.breaks||'—']))}`;
+ }).join('')}`;
+}
+function controlContacts(){
+ return `<div class="notice">Directorio resumido. Los teléfonos y correos del Excel se omiten en esta versión de revisión para evitar exponer datos de contacto al compartir un enlace abierto.</div><div class="card">${CONTROL_DATA.contacts.map(c=>`<div class="contact-row"><div><b>${c.name}</b><div class="small">${c.role}</div></div>${c.notes?`<span class="small">${c.notes}</span>`:''}</div>`).join('')}</div>`;
+}
+function controlRender(){
+ const tabs=[['resumen','Resumen'],['tareas','Pendientes'],['montaje','Montaje'],['diario','Día a día'],['turnos','Turnos'],['contactos','Contactos']];
+ const body={resumen:controlOverview,tareas:controlTasks,montaje:controlMount,diario:controlDaily,turnos:controlShifts,contactos:controlContacts};
+ return `<h2>Control del evento</h2><p class="lead">Tablero operativo basado en el Excel “FeriHelado 2026 · Control del evento”.</p><div class="control-tabs">${tabs.map(([id,n])=>`<button data-ctab="${id}" aria-pressed="${S.controlTab===id}">${n}</button>`).join('')}</div>${body[S.controlTab]()}`;
+}
+
+function fill(){
+  const f=$('#flav');if(f){const q=S.vq.toLowerCase();const r=VITRINA.map((v,i)=>[i+1,v]).filter(([,v])=>v.toLowerCase().includes(q));f.innerHTML=r.length?r.map(([i,v])=>`<div><b>${String(i).padStart(2,'0')}</b>${v}</div>`).join(''):'<p class="small">Ningún sabor coincide.</p>';}
+  const o=$('#objt');if(o){const q=S.objq.toLowerCase();const r=OBJ.filter(x=>x.join(' ').toLowerCase().includes(q));o.innerHTML=r.length?tbl(['Marca','El cliente dice…','Tú respondes…'],r.map(x=>[`<span class="chip">${x[0]}</span>`,x[1],x[2]])):'<p class="small">Ninguna objeción coincide.</p>';}
+}
+function render(){
+  $('#nav').innerHTML=TABS.map(([id,n])=>`<button role="tab" data-tab="${id}" aria-selected="${S.tab===id}">${n}</button>`).join('');
+  $('#main').innerHTML=`<section class="tab on">${T[S.tab]()}</section>`;fill();
+}
+function go(tab){S.tab=tab;if(location.hash!=='#'+tab)location.hash=tab;else render();window.scrollTo(0,0);}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.tab)go(b.dataset.tab);
+  else if(b.dataset.ctab){S.controlTab=b.dataset.ctab;render();}
+  else if(b.dataset.day){S.day=b.dataset.day;render();}
+  else if(b.dataset.brand){S.brand=b.dataset.brand;if(S.tab!=='marcas')go('marcas');else render();}
+});
+document.addEventListener('change',e=>{
+ if(e.target.id==='extchk'){S.ext=e.target.checked;render();}
+ if(e.target.id==='taskstatus'){S.taskStatus=e.target.value;render();}
+ if(e.target.id==='taskarea'){S.taskArea=e.target.value;render();}
+ if(e.target.id==='mountstatus'){S.mountStatus=e.target.value;render();}
+ if(e.target.matches('[data-task-status]')){setTaskStatus(e.target.dataset.taskStatus,e.target.value);render();}
+});
+document.addEventListener('input',e=>{if(e.target.id==='vq'){S.vq=e.target.value;fill();}if(e.target.id==='objq'){S.objq=e.target.value;fill();}if(e.target.id==='taskq'){S.taskQ=e.target.value;const pos=e.target.selectionStart;render();const n=$('#taskq');if(n){n.focus();n.setSelectionRange(pos,pos);}}});
+function fromHash(){const h=location.hash.slice(1);S.tab=T[h]?h:'inicio';render();}
+window.addEventListener('hashchange',fromHash);fromHash();
+$('#accessContinue').addEventListener('click',()=>{ $('#accessScreen').remove(); document.body.classList.remove('access-locked'); });
+</script>
+</body>
+</html>
